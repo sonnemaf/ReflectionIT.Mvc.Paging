@@ -12,16 +12,15 @@ namespace ReflectionIT.Mvc.Paging {
         public int PageIndex { get; }
         public int PageCount { get; }
         public string Action { get; set; }
-        public string SortExpression { get;  }
+        public string SortExpression { get; }
 
         public string DefaultSortExpression { get; }
 
-        public static async Task<PagingList<T>> CreateAsync(IOrderedQueryable<T> qry, int pageSize, int pageIndex)
-        {
+        public static async Task<PagingList<T>> CreateAsync(IOrderedQueryable<T> qry, int pageSize, int pageIndex) {
             var pageCount = (int)Math.Ceiling(await qry.CountAsync() / (double)pageSize);
 
             return new PagingList<T>(await qry.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync(),
-                                     pageSize, pageIndex, pageCount);
+                                        pageSize, pageIndex, pageCount);
         }
 
         public static async Task<PagingList<T>> CreateAsync(IQueryable<T> qry, int pageSize, int pageIndex, string sortExpression, string defaultSortExpression) {
@@ -38,7 +37,7 @@ namespace ReflectionIT.Mvc.Paging {
             this.Action = "Index";
         }
 
-        private PagingList(List<T> list,int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression)
+        private PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression)
             : this(list, pageSize, pageIndex, pageCount) {
 
             this.SortExpression = sortExpression;
@@ -48,6 +47,7 @@ namespace ReflectionIT.Mvc.Paging {
         public RouteValueDictionary RouteValue { get; set; }
 
         public RouteValueDictionary GetRouteValueForPage(int pageIndex) {
+
             RouteValueDictionary dict =
                 this.RouteValue == null ? new RouteValueDictionary() :
                 new RouteValueDictionary(this.RouteValue);
@@ -62,6 +62,7 @@ namespace ReflectionIT.Mvc.Paging {
         }
 
         public RouteValueDictionary GetRouteValueForSort(string sortExpression) {
+
             RouteValueDictionary dict =
                 this.RouteValue == null ? new RouteValueDictionary() :
                 new RouteValueDictionary(this.RouteValue);
