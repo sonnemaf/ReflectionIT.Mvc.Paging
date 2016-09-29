@@ -10,7 +10,7 @@
     "Microsoft.AspNetCore.Diagnostics": "1.0.0",
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "1.0.0",
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "1.0.0",
-    "Microsoft.AspNetCore.Mvc": "1.0.0",
+    "Microsoft.AspNetCore.Mvc": "1.0.1",
     "Microsoft.AspNetCore.Razor.Tools": {
       "version": "1.0.0-preview2-final",
       "type": "build"
@@ -43,7 +43,9 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "ReflectionIT.Mvc.Paging": "1.0.0-*"
+    "ReflectionIT.Mvc.Paging": "1.0.0-*",
+    "Microsoft.Extensions.FileProviders.Embedded": "1.0.0",
+    "System.Reflection": "4.1.0"
   },
 
   "tools": {

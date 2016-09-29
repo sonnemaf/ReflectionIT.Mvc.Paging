@@ -25,9 +25,13 @@ namespace SampleApp.Models.Database
         public int? CategoryId { get; set; }
         [MaxLength(20)]
         public string QuantityPerUnit { get; set; }
+
         [Column(TypeName = "money")]
         [Range(1, 1000)]
+        [Display(Name = "Price")]
+        [UIHint("Currency")]
         public decimal? UnitPrice { get; set; }
+
         public short? UnitsInStock { get; set; }
         public short? UnitsOnOrder { get; set; }
         public short? ReorderLevel { get; set; }

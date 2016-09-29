@@ -1,0 +1,10 @@
+﻿@{
+    string style = null;
+    if (ViewData.Model < 20) {
+        style = "color: red";
+    }
+    if (ViewData.Model > 50) {
+        style = "color: green";
+    }
+}
+<span style="@style">€ @(ViewData.Model?.ToString("N2"))</span>

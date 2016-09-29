@@ -14,7 +14,7 @@
 
 <p><a asp-action="Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New</a></p>
 
-@Html.Partial("Pager", this.Model)
+@await Component.InvokeAsync("ReflectionIT.Mvc.Paging.Pager", new { pagingList = this.Model })
 
 <table class="table">
     <tr>
@@ -62,4 +62,4 @@
     }
 </table>
 
-@Html.Partial("Pager", this.Model)
+@await Component.InvokeAsync("ReflectionIT.Mvc.Paging.Pager", new { pagingList = this.Model })

@@ -24,7 +24,7 @@ namespace SampleApp.Controllers {
                                             && sup.CompanyName == companyName))
                 return Json(true);
 
-            string msg = String.Format("{0} is an already a used CompanyName", companyName);
+            string msg = String.Format("{0} is already used", companyName);
 
             return Json(msg);
         }

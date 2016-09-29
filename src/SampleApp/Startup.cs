@@ -1,14 +1,18 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 using Microsoft.Extensions.Logging;
+using ReflectionIT.Mvc.Paging;
 using SampleApp.Data;
 using SampleApp.Models;
 using SampleApp.Models.Database;
@@ -57,6 +61,24 @@ namespace SampleApp
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+
+
+            ////Get a reference to the assembly that contains the view components
+            //var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
+
+            ////Create an EmbeddedFileProvider for that assembly
+            //var embeddedFileProvider = new EmbeddedFileProvider(
+            //    assembly,
+            //    "ReflectionIT.Mvc.Paging"
+            //);
+
+            ////Add the file provider to the Razor view engine
+            //services.Configure<RazorViewEngineOptions>(options => {
+            //    options.FileProviders.Add(embeddedFileProvider);
+            //});
+
+            services.AddPaging();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

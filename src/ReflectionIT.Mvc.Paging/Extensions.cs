@@ -3,11 +3,14 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.AspNetCore.Html;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.FileProviders;
 
 namespace ReflectionIT.Mvc.Paging {
 
-    public static class PagingExtensions {
+    public static class Extensions {
 
         public static string DisplayNameFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
             return html.DisplayNameForInnerType<TModel, TValue>(expression);
@@ -69,6 +72,21 @@ namespace ReflectionIT.Mvc.Paging {
             return resultExp;
         }
 
+        public static void AddPaging(this IServiceCollection services) {
+            //Get a reference to the assembly that contains the view components
+            var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
+
+            //Create an EmbeddedFileProvider for that assembly
+            var embeddedFileProvider = new EmbeddedFileProvider(
+                assembly,
+                "ReflectionIT.Mvc.Paging"
+            );
+
+            //Add the file provider to the Razor view engine
+            services.Configure<RazorViewEngineOptions>(options => {
+                options.FileProviders.Add(embeddedFileProvider);
+            });
+        }
 
     }
 }
