@@ -1,0 +1,24 @@
+{
+  "title": "ReflectionIT.Mvc.Paging",
+  "copyright": "Reflection IT ",
+  "version": "1.0.0-*",
+
+  "dependencies": {
+    "NETStandard.Library": "1.6.0",
+    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.0",
+    "Microsoft.AspNetCore.Routing": "1.0.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0"
+  },
+
+  "frameworks": {
+    "netstandard1.6": {
+      "imports": "dnxcore50"
+    }
+  },
+
+  "scripts": {
+    "postcompile": [
+      "dotnet pack --no-build --configuration %compile:Configuration%"
+    ]
+  }
+}

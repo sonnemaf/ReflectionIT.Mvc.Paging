@@ -1,0 +1,17 @@
+{
+  "version": "1.0.0-*",
+  "description": "ReflectionIT.Mvc.Paging Class Library",
+  "authors": [ "FonsS" ],
+  "packOptions": [ "" ],
+  "projectUrl": "",
+  "licenseUrl": "",
+  "frameworks": {
+    "dnx451": { },
+    "dnxcore50": { }
+  },
+  "dependencies": {
+    "Microsoft.AspNet.Mvc.ViewFeatures": "6.0.0-rc1-final",
+    "Microsoft.AspNet.Routing": "1.0.0-rc1-final",
+    "EntityFramework.MicrosoftSqlServer": "7.0.0-rc1-final"
+  }
+}
