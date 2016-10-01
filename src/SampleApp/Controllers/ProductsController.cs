@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -112,6 +113,9 @@ namespace SampleApp.Controllers {
             try {
                 await _context.SaveChangesAsync();
                 return true;
+            } catch (DbUpdateException ex) when ((ex.InnerException as SqlException).Number == 2601) {
+                this.ModelState.AddModelError(string.Empty, "ProductName must be unique");
+                return false;
             } catch (Exception ex) {
                 this.ModelState.AddModelError(string.Empty, ex.Message);
                 return false;
@@ -145,17 +149,11 @@ namespace SampleApp.Controllers {
             }
 
             if (ModelState.IsValid) {
-                try {
-                    _context.Update(products);
-                    await _context.SaveChangesAsync();
-                } catch (DbUpdateConcurrencyException) {
-                    if (!ProductsExists(products.ProductId)) {
-                        return NotFound();
-                    } else {
-                        throw;
-                    }
+                _context.Update(products);
+
+                if (await TrySaveChangesAsync()) {
+                    return RedirectToAction("Index");
                 }
-                return RedirectToAction("Index");
             }
             ViewData["CategoryId"] = new SelectList(_context.Categories, "CategoryId", "CategoryName", products.CategoryId);
             ViewData["SupplierId"] = new SelectList(_context.Suppliers, "SupplierId", "CompanyName", products.SupplierId);

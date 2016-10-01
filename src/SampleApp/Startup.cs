@@ -62,7 +62,6 @@ namespace SampleApp
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-
             ////Get a reference to the assembly that contains the view components
             //var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
 
@@ -77,8 +76,8 @@ namespace SampleApp
             //    options.FileProviders.Add(embeddedFileProvider);
             //});
 
+            // Register ViewComponent using an EmbeddedFileProvider
             services.AddPaging();
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

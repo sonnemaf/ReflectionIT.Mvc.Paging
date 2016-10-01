@@ -1,5 +1,5 @@
 @model PagingList<SampleApp.Models.Database.Products>
-@using ReflectionIT.Mvc.Paging;
+@using ReflectionIT.Mvc.Paging;      @*Brings SortableHeaderFor extension method into scope*@ 
 
 @{
     ViewData["Title"] = "Products";
@@ -62,4 +62,4 @@
     }
 </table>
 
-@await Component.InvokeAsync("ReflectionIT.Mvc.Paging.Pager", new { pagingList = this.Model })
+@await Html.PartialAsync("Pager", this.Model)
