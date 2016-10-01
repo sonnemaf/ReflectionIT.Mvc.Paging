@@ -17,16 +17,14 @@ namespace SampleApp.Controllers {
             _context = context;
         }
 
-        //[OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
         public JsonResult IsCompanyNameAvailable(int? supplierId, string companyName) {
 
             if (!_context.Suppliers.Any(sup => (!supplierId.HasValue || sup.SupplierId != supplierId)
-                                            && sup.CompanyName == companyName))
+                                            && sup.CompanyName == companyName)) {
                 return Json(true);
+            }
 
-            string msg = String.Format("{0} is already used", companyName);
-
-            return Json(msg);
+            return Json($"{companyName} is already used");
         }
 
 
