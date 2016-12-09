@@ -78,8 +78,7 @@ namespace ReflectionIT.Mvc.Paging {
 
             //Create an EmbeddedFileProvider for that assembly
             var embeddedFileProvider = new EmbeddedFileProvider(
-                assembly,
-                "ReflectionIT.Mvc.Paging"
+                assembly, "ReflectionIT.Mvc.Paging"
             );
 
             //Add the file provider to the Razor view engine

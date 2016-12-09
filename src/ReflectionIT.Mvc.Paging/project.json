@@ -1,20 +1,16 @@
 {
   "title": "ReflectionIT.Mvc.Paging",
   "copyright": "Reflection IT ",
-  "version": "1.0.0-*",
+  "version": "1.1.0-*",
 
   "dependencies": {
-    "Microsoft.AspNetCore.Mvc": "1.0.1",
-    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.0.1",
-    "Microsoft.AspNetCore.Routing": "1.0.0",
-    "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0",
-    "Microsoft.Extensions.FileProviders.Embedded": "1.0.0",
-    "Microsoft.Extensions.Options": "1.0.0",
-    "NETStandard.Library": "1.6.0"
-  },
-
-  "tools": {
-    "Microsoft.AspNetCore.Razor.Tools": "1.0.0-preview2-final"
+    "Microsoft.AspNetCore.Mvc": "1.1.0",
+    "Microsoft.AspNetCore.Mvc.ViewFeatures": "1.1.0",
+    "Microsoft.AspNetCore.Routing": "1.1.0",
+    "Microsoft.EntityFrameworkCore.SqlServer": "1.1.0",
+    "Microsoft.Extensions.FileProviders.Embedded": "1.1.0",
+    "Microsoft.Extensions.Options": "1.1.0",
+    "NETStandard.Library": "1.6.1"
   },
 
   "frameworks": {

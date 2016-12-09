@@ -1,5 +1,5 @@
 @model PagingList<SampleApp.Models.Database.Products>
-@using ReflectionIT.Mvc.Paging;      @*Brings SortableHeaderFor extension method into scope*@ 
+@tagHelperPrefix "th:"
 
 @{
     ViewData["Title"] = "Products";
@@ -15,6 +15,8 @@
 <p><a asp-action="Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New</a></p>
 
 @await Component.InvokeAsync("ReflectionIT.Mvc.Paging.Pager", new { pagingList = this.Model })
+
+@*<vc:ReflectionIT.Mvc.Paging.Pager pagingList="@Model" />*@
 
 <table class="table">
     <tr>

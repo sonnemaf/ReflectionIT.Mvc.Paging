@@ -10,7 +10,7 @@
     <a asp-action="Create">Create New</a>
 </p>
 
-@await Component.InvokeAsync("ReflectionIT.Mvc.Paging.Pager", new { pagingList = this.Model })
+@await Component.InvokeAsync("Pager", new { pagingList = this.Model })
 
 <table class="table">
     <thead>
