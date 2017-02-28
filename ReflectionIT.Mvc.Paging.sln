@@ -8,7 +8,8 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF7EB53C-4319-42C6-88AF-1654E3C40344}"
 	ProjectSection(SolutionItems) = preProject
 		global.json = global.json
-		D:\Projects\Training\Microsoft.NET\ASP.NET MVC 6\Tools\Northwind Database\Northwind Local DB\instnwnd.sql = D:\Projects\Training\Microsoft.NET\ASP.NET MVC 6\Tools\Northwind Database\Northwind Local DB\instnwnd.sql
+		..\..\Tools\Northwind Database\Northwind Local DB\instnwnd.sql = ..\..\Tools\Northwind Database\Northwind Local DB\instnwnd.sql
+		License.txt = License.txt
 	EndProjectSection
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "SampleApp", "src\SampleApp\SampleApp.xproj", "{8F9FFD1B-A7F3-43E0-8C11-868CA0A0212E}"
