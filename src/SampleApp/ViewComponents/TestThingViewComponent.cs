@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace SampleApp.ViewComponents
 {
-    public class TestViewComponent : ViewComponent
+    public class TestThingViewComponent : ViewComponent
     {
 
-        public async Task<IViewComponentResult> InvokeAsync(string text)
+        public async Task<IViewComponentResult> InvokeAsync(string textData)
         {
             await Task.Delay(1);
 
-            return View(model: text);
+            return View(model: textData);
         }
 
     }

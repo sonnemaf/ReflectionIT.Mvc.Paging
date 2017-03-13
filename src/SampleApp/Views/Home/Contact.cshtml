@@ -1,6 +1,8 @@
 ﻿@{
     ViewData["Title"] = "Contact";
 }
+@addTagHelper *, SampleApp
+
 <h2>@ViewData["Title"].</h2>
 <h3>@ViewData["Message"]</h3>
 
@@ -18,6 +20,6 @@
 
 
 <div>
-    @await Component.InvokeAsync("Test", new { text = "Fons" })
-    <vc:test text="Piet"></vc:test>
+    @await Component.InvokeAsync("TestThing", new { textData = "Hello" })
+    <vc:test-thing text-data="World" />
 </div>
