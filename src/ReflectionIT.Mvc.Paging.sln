@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ReflectionIT.Mvc.Paging", "ReflectionIT.Mvc.Paging\ReflectionIT.Mvc.Paging.csproj", "{5563F28C-2A17-4B33-A132-A59CE75798EF}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SampleApp", "SampleApp\SampleApp.csproj", "{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5563F28C-2A17-4B33-A132-A59CE75798EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5563F28C-2A17-4B33-A132-A59CE75798EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5563F28C-2A17-4B33-A132-A59CE75798EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5563F28C-2A17-4B33-A132-A59CE75798EF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
