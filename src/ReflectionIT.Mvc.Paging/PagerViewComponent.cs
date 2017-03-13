@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ReflectionIT.Mvc.Paging
 {
-    [ViewComponent()]
-    //[ViewComponent(Name = "Pager")]
+    //[ViewComponent()]
+    [ViewComponent(Name = "Pager")]
     public class PagerViewComponent : ViewComponent {
 
         public IViewComponentResult Invoke(IPagingList pagingList) {

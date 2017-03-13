@@ -26,16 +26,10 @@ namespace SampleApp
         {
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: true, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
 
-            if (env.IsDevelopment())
-            {
-                // For more details on using the user secret store see http://go.microsoft.com/fwlink/?LinkID=532709
-                builder.AddUserSecrets();
-            }
-
-            builder.AddEnvironmentVariables();
             Configuration = builder.Build();
         }
 
@@ -62,19 +56,20 @@ namespace SampleApp
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            ////Get a reference to the assembly that contains the view components
-            //var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
+            //Get a reference to the assembly that contains the view components
+            var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
 
-            ////Create an EmbeddedFileProvider for that assembly
-            //var embeddedFileProvider = new EmbeddedFileProvider(
-            //    assembly,
-            //    "ReflectionIT.Mvc.Paging"
-            //);
+            //Create an EmbeddedFileProvider for that assembly
+            var embeddedFileProvider = new EmbeddedFileProvider(
+                assembly,
+                "ReflectionIT.Mvc.Paging"
+            );
 
-            ////Add the file provider to the Razor view engine
-            //services.Configure<RazorViewEngineOptions>(options => {
-            //    options.FileProviders.Add(embeddedFileProvider);
-            //});
+            //Add the file provider to the Razor view engine
+            services.Configure<RazorViewEngineOptions>(options =>
+            {
+                options.FileProviders.Add(embeddedFileProvider);
+            });
 
             // Register ViewComponent using an EmbeddedFileProvider
             services.AddPaging();

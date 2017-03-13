@@ -1,5 +1,4 @@
 @model PagingList<SampleApp.Models.Database.Products>
-@tagHelperPrefix "th:"
 
 @{
     ViewData["Title"] = "Products";
@@ -14,9 +13,7 @@
 
 <p><a asp-action="Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New</a></p>
 
-@await Component.InvokeAsync("ReflectionIT.Mvc.Paging.Pager", new { pagingList = this.Model })
-
-@*<vc:ReflectionIT.Mvc.Paging.Pager pagingList="@Model" />*@
+<vc:pager paging-list="@Model"></vc:pager>
 
 <table class="table">
     <tr>
@@ -30,7 +27,7 @@
             @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName")
         </th>
         <th>
-            @Html.SortableHeaderFor(model => model.UnitPrice, "UnitPrice"))
+            @Html.SortableHeaderFor(model => model.UnitPrice, "UnitPrice")
         </th>
         <th></th>
     </tr>
@@ -64,4 +61,4 @@
     }
 </table>
 
-@await Html.PartialAsync("Pager", this.Model)
+<vc:pager paging-list="@Model"></vc:pager>
