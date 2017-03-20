@@ -17,6 +17,7 @@ namespace SampleApp.Controllers {
             _context = context;
         }
 
+        [AcceptVerbs("Get", "Post")]
         public JsonResult IsCompanyNameAvailable(int? supplierId, string companyName) {
 
             if (!_context.Suppliers.Any(sup => (!supplierId.HasValue || sup.SupplierId != supplierId)
@@ -35,7 +36,7 @@ namespace SampleApp.Controllers {
         //}
         public async Task<IActionResult> Index(int page = 1) {
 
-            var qry = _context.Suppliers.OrderBy(p => p.CompanyName);
+            var qry = _context.Suppliers.AsNoTracking().OrderBy(p => p.CompanyName);
 
             var model = await PagingList<Suppliers>.CreateAsync(qry, 10, page);
 

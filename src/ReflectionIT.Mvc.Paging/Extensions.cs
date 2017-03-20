@@ -16,8 +16,22 @@ namespace ReflectionIT.Mvc.Paging {
             return html.DisplayNameForInnerType<TModel, TValue>(expression);
         }
 
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, IPagingList pagingList, string action = "Index") where TModel : class {
+            var bldr = new HtmlContentBuilder();
+            bldr.AppendHtml(SortableHeaderFor(html, expression, sortColumn, action));
+
+            if (pagingList.SortExpression == sortColumn) {
+                bldr.AppendHtml(" <span class=\"glyphicon glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span>");
+            } else {
+                if (pagingList.SortExpression == "-" + sortColumn) {
+                    bldr.AppendHtml(" <span class=\"glyphicon glyphicon glyphicon-chevron-up\" aria-hidden=\"true\"></span>");
+                }
+            }
+            return bldr;
+        }
+
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, string action = "Index") where TModel : class {
-            return html.ActionLink(html.DisplayNameForInnerType<TModel, TValue>(expression), action, html.ViewData.Model.GetRouteValueForSort(sortColumn));
+            return html.ActionLink(html.DisplayNameForInnerType(expression), action, html.ViewData.Model.GetRouteValueForSort(sortColumn));
         }
 
         public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, string sortExpression) where T : class {

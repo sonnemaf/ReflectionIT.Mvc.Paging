@@ -41,7 +41,7 @@ namespace SampleApp.Controllers {
 
         public async Task<IActionResult> Index(string filter, int page = 1, string sortExpression = "ProductName") {
 
-            var qry = _context.Products
+            var qry = _context.Products.AsNoTracking()
                 .Include(p => p.Category)
                 .Include(p => p.Supplier)
                 .AsQueryable();

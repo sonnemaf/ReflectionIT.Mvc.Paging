@@ -12,6 +12,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\cldrjs\**" />
+    <Content Remove="wwwroot\lib\cldrjs\**" />
+    <EmbeddedResource Remove="wwwroot\lib\cldrjs\**" />
+    <None Remove="wwwroot\lib\cldrjs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="wwwroot\**\*;Views\**\*;Areas\**\Views">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </None>

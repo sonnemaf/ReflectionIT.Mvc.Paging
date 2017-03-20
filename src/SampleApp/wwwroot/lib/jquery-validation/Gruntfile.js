@@ -1,5 +1,5 @@
 /*jshint node:true*/
-module.exports = function( grunt ) {
+module.exports = function(grunt) {
 
 "use strict";
 
@@ -17,33 +17,29 @@ banner = "/*!\n" +
 	" * <%= pkg.homepage %>\n" +
 	" *\n" +
 	" * Copyright (c) <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>\n" +
-	" * Released under the <%= _.map(pkg.licenses, 'type').join(', ') %> license\n" +
+	" * Released under the <%= _.pluck(pkg.licenses, 'type').join(', ') %> license\n" +
 	" */\n";
 
-// Define UMD wrapper variables
+// define UMD wrapper variables
 
 umdStart = "(function( factory ) {\n" +
 	"\tif ( typeof define === \"function\" && define.amd ) {\n";
 
-umdMiddle = "\t} else if (typeof module === \"object\" && module.exports) {\n" +
-	"\t\tmodule.exports = factory( require( \"jquery\" ) );\n" +
-	"\t} else {\n" +
+umdMiddle = "\t} else {\n" +
 	"\t\tfactory( jQuery );\n" +
 	"\t}\n" +
 	"}(function( $ ) {\n\n";
 
-umdEnd = "return $;" +
-	"\n}));";
+umdEnd = "\n}));";
 
 umdStandardDefine = "\t\tdefine( [\"jquery\"], factory );\n";
 umdAdditionalDefine = "\t\tdefine( [\"jquery\", \"./jquery.validate\"], factory );\n";
 umdLocalizationDefine = "\t\tdefine( [\"jquery\", \"../jquery.validate\"], factory );\n";
 
-grunt.initConfig( {
-	pkg: grunt.file.readJSON( "package.json" ),
+grunt.initConfig({
+	pkg: grunt.file.readJSON("package.json"),
 	concat: {
-
-		// Used to copy to dist folder
+		// used to copy to dist folder
 		dist: {
 			options: {
 				banner: banner +
@@ -76,7 +72,7 @@ grunt.initConfig( {
 				"<%= grunt.template.today('m/d/yyyy') %>\n" +
 				" * <%= pkg.homepage %>\n" +
 				" * Copyright (c) <%= grunt.template.today('yyyy') %> <%= pkg.author.name %>;" +
-				" Licensed <%= _.map(pkg.licenses, 'type').join(', ') %> */\n"
+				" Licensed <%= _.pluck(pkg.licenses, 'type').join(', ') %> */\n"
 		},
 		dist: {
 			files: {
@@ -124,7 +120,7 @@ grunt.initConfig( {
 			src: "src/**/*.js"
 		},
 		test: {
-			src: [ "test/*.js", "test/additional/*.js" ]
+			src: "test/*.js"
 		},
 		grunt: {
 			src: "Gruntfile.js"
@@ -147,8 +143,7 @@ grunt.initConfig( {
 	copy: {
 		dist: {
 			options: {
-
-				// Append UMD wrapper
+				// append UMD wrapper
 				process: function( content ) {
 					return umdStart + umdLocalizationDefine + umdMiddle + content + umdEnd;
 				}
@@ -172,20 +167,20 @@ grunt.initConfig( {
 			]
 		}
 	}
-} );
+});
 
-grunt.loadNpmTasks( "grunt-contrib-jshint" );
-grunt.loadNpmTasks( "grunt-contrib-qunit" );
-grunt.loadNpmTasks( "grunt-contrib-uglify" );
-grunt.loadNpmTasks( "grunt-contrib-concat" );
-grunt.loadNpmTasks( "grunt-contrib-compress" );
-grunt.loadNpmTasks( "grunt-contrib-watch" );
-grunt.loadNpmTasks( "grunt-jscs" );
-grunt.loadNpmTasks( "grunt-contrib-copy" );
-grunt.loadNpmTasks( "grunt-text-replace" );
+grunt.loadNpmTasks("grunt-contrib-jshint");
+grunt.loadNpmTasks("grunt-contrib-qunit");
+grunt.loadNpmTasks("grunt-contrib-uglify");
+grunt.loadNpmTasks("grunt-contrib-concat");
+grunt.loadNpmTasks("grunt-contrib-compress");
+grunt.loadNpmTasks("grunt-contrib-watch");
+grunt.loadNpmTasks("grunt-jscs");
+grunt.loadNpmTasks("grunt-contrib-copy");
+grunt.loadNpmTasks("grunt-text-replace");
 
-grunt.registerTask( "default", [ "concat", "copy", "jscs", "jshint", "qunit" ] );
-grunt.registerTask( "release", [ "default", "uglify", "replace", "compress" ] );
-grunt.registerTask( "start", [ "concat", "watch" ] );
+grunt.registerTask("default", [ "concat", "copy", "jscs", "jshint", "qunit" ]);
+grunt.registerTask("release", [ "default", "uglify", "replace", "compress" ]);
+grunt.registerTask("start", [ "concat", "watch" ]);
 
 };

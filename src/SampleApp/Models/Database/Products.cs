@@ -29,7 +29,7 @@ namespace SampleApp.Models.Database
         [Column(TypeName = "money")]
         [Range(1, 1000)]
         [Display(Name = "Price")]
-        [UIHint("Currency")]
+        //[UIHint("Currency")]
         public decimal? UnitPrice { get; set; }
 
         public short? UnitsInStock { get; set; }
