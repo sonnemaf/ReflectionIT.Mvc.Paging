@@ -53,8 +53,8 @@ namespace SampleApp.Controllers {
             var model = await PagingList<Products>.CreateAsync(qry, 10, page, sortExpression, "ProductName");
 
             model.RouteValue = new RouteValueDictionary {
-        { "filter", filter}
-    };
+                { "filter", filter}
+            };
 
             return View(model);
         }

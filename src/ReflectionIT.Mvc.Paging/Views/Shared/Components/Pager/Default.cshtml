@@ -10,7 +10,7 @@
 
         @if (start > 1) {
             <li>
-                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(1))" aria-label="Previous">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(1))" aria-label="First">
                     <span aria-hidden="true">1</span>
                 </a>
             </li>
@@ -40,7 +40,7 @@
 
         @if (stop < this.Model.PageCount) {
             <li>
-                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageCount))" aria-label="Next">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageCount))" aria-label="Last">
                     <span aria-hidden="true">@this.Model.PageCount</span>
                 </a>
             </li>
