@@ -13,7 +13,9 @@
 
 <p><a asp-action="Create"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Create New</a></p>
 
-<vc:pager paging-list="@Model"></vc:pager>
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model"></vc:pager>
+</nav>
 
 <table class="table">
     <tr>
@@ -61,4 +63,7 @@
     }
 </table>
 
-<vc:pager paging-list="@Model"></vc:pager>
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>
+
