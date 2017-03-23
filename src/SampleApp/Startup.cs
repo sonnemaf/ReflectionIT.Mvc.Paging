@@ -39,6 +39,7 @@ namespace SampleApp
         public void ConfigureServices(IServiceCollection services)
         {
             // Add framework services.
+            services.AddEntityFrameworkSqlServer();
 
             services.AddDbContext<NorthwindContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Northwind")));

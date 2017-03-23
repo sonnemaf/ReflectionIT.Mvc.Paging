@@ -5,6 +5,7 @@ using System.Reflection;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
@@ -14,6 +15,10 @@ namespace ReflectionIT.Mvc.Paging {
 
         public static string DisplayNameFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
             return html.DisplayNameForInnerType<TModel, TValue>(expression);
+        }
+
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, IPagingList pagingList, string action = "Index") where TModel : class {
+            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression), pagingList, action);
         }
 
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, IPagingList pagingList, string action = "Index") where TModel : class {
@@ -32,6 +37,10 @@ namespace ReflectionIT.Mvc.Paging {
 
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, string action = "Index") where TModel : class {
             return html.ActionLink(html.DisplayNameForInnerType(expression), action, html.ViewData.Model.GetRouteValueForSort(sortColumn));
+        }
+
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string action = "Index") where TModel : class {
+            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression), action);
         }
 
         public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, string sortExpression) where T : class {

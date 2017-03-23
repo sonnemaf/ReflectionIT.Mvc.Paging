@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Copyright>Reflection IT </Copyright>
     <AssemblyTitle>ReflectionIT.Mvc.Paging</AssemblyTitle>
-    <VersionPrefix>1.2.0</VersionPrefix>
+    <VersionPrefix>1.3.0</VersionPrefix>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>ReflectionIT.Mvc.Paging</AssemblyName>
     <PackageId>ReflectionIT.Mvc.Paging</PackageId>

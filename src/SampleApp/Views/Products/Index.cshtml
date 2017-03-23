@@ -18,7 +18,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.SortableHeaderFor(model => model.ProductName, "ProductName", this.Model)
+            @Html.SortableHeaderFor(model => model.ProductName, this.Model)
         </th>
         <th>
             @Html.SortableHeaderFor(model => model.Supplier.CompanyName, "Supplier.CompanyName, ProductName", this.Model)
@@ -27,7 +27,7 @@
             @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName, ProductName", this.Model)
         </th>
         <th>
-            @Html.SortableHeaderFor(model => model.UnitPrice, "UnitPrice", this.Model)
+            @Html.SortableHeaderFor(model => model.UnitPrice, this.Model)
         </th>
         <th></th>
     </tr>
