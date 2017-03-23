@@ -76,5 +76,24 @@ namespace ReflectionIT.Mvc.Paging {
             return dict;
         }
 
+        public int NumberOfPagesToShow { get; set; } = PagerViewComponent.DefaultNumberOfPagesToShow;
+
+        public int StartPageIndex {
+            get {
+                int half = (int)((NumberOfPagesToShow - 0.5) / 2);
+                var start = Math.Max(1, this.PageIndex - half);
+                if (start + NumberOfPagesToShow - 1 > this.PageCount) {
+                    start = this.PageCount - NumberOfPagesToShow + 1;
+                }
+                return Math.Max(1, start);
+            }
+        }
+
+        public int StopPageIndex {
+            get {
+                return Math.Min(this.PageCount, StartPageIndex + NumberOfPagesToShow - 1);
+            }
+        }
+
     }
 }

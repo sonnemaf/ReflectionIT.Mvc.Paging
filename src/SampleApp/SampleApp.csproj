@@ -68,4 +68,9 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Include="Views\Shared\Components\Pager\Bootstrap5.cshtml" />
+    <EmbeddedResource Include="Views\Shared\SmallRightPager.cshtml" />
+  </ItemGroup>
+
 </Project>

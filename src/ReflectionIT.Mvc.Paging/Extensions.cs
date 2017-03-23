@@ -95,7 +95,7 @@ namespace ReflectionIT.Mvc.Paging {
             return resultExp;
         }
 
-        public static void AddPaging(this IServiceCollection services) {
+        public static void AddPaging(this IServiceCollection services, string viewName = "Bootstrap3", int defaultNumberOfPagesToShow = 5) {
             //Get a reference to the assembly that contains the view components
             var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
 
@@ -108,6 +108,9 @@ namespace ReflectionIT.Mvc.Paging {
             services.Configure<RazorViewEngineOptions>(options => {
                 options.FileProviders.Add(embeddedFileProvider);
             });
+
+            PagerViewComponent.ViewName = viewName;
+            PagerViewComponent.DefaultNumberOfPagesToShow = defaultNumberOfPagesToShow;
         }
 
     }
