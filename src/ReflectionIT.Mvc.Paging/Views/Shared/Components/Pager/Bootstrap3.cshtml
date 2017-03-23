@@ -40,7 +40,7 @@
             </li>
         }
 
-        @if (stop <= this.Model.PageCount) {
+        @if (stop < this.Model.PageCount) {
             <li>
                 <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageCount))" aria-label="Last">
                     <span aria-hidden="true">@this.Model.PageCount</span>
