@@ -73,7 +73,13 @@ namespace SampleApp
             });
 
             // Register ViewComponent using an EmbeddedFileProvider
-            services.AddPaging(viewName: "Bootstrap4", defaultNumberOfPagesToShow: 5);
+            services.AddPaging(
+                new PagingOptions {
+                    ViewName = "Bootstrap4",
+                    DefaultNumberOfPagesToShow = 5,
+                    HtmlIndicatorDown = " <span>&darr;</span>",
+                    HtmlIndicatorUp = " <span>&uarr;</span>",
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,9 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <Copyright>Reflection IT </Copyright>
+    <Company>Reflection IT</Company>
+    <Authors>Fons Sonnemans</Authors>
+    <Copyright>Reflection IT</Copyright>
     <AssemblyTitle>ReflectionIT.Mvc.Paging</AssemblyTitle>
-    <VersionPrefix>1.4.1</VersionPrefix>
+    <VersionPrefix>1.5.0</VersionPrefix>
     <TargetFramework>netstandard1.6</TargetFramework>
     <AssemblyName>ReflectionIT.Mvc.Paging</AssemblyName>
     <PackageId>ReflectionIT.Mvc.Paging</PackageId>
@@ -12,6 +14,14 @@
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+    <Title>ReflectionIT.Mvc.Paging</Title>
+    <Description>
+      ASP.NET Core 1.1 (MVC 6) Library to support Paging (including sorting and filtering) for Entity Framework Core 1.1
+    </Description>
+    <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
+    <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
+    <PackageTags>ASPNETCore MVC6 EntityFrameworkCore</PackageTags>
+    <PackageReleaseNotes>PagingOptions added</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>

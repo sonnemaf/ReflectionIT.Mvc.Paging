@@ -26,10 +26,10 @@ namespace ReflectionIT.Mvc.Paging {
             bldr.AppendHtml(SortableHeaderFor(html, expression, sortColumn, action));
 
             if (pagingList.SortExpression == sortColumn) {
-                bldr.AppendHtml(" <span class=\"glyphicon glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span>");
+                bldr.AppendHtml(PagingOptions.Current.HtmlIndicatorDown);
             } else {
                 if (pagingList.SortExpression == "-" + sortColumn) {
-                    bldr.AppendHtml(" <span class=\"glyphicon glyphicon glyphicon-chevron-up\" aria-hidden=\"true\"></span>");
+                    bldr.AppendHtml(PagingOptions.Current.HtmlIndicatorUp);
                 }
             }
             return bldr;
@@ -95,7 +95,7 @@ namespace ReflectionIT.Mvc.Paging {
             return resultExp;
         }
 
-        public static void AddPaging(this IServiceCollection services, string viewName = "Bootstrap3", int defaultNumberOfPagesToShow = 5) {
+        public static void AddPaging(this IServiceCollection services) {
             //Get a reference to the assembly that contains the view components
             var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
 
@@ -108,9 +108,11 @@ namespace ReflectionIT.Mvc.Paging {
             services.Configure<RazorViewEngineOptions>(options => {
                 options.FileProviders.Add(embeddedFileProvider);
             });
+        }
 
-            PagerViewComponent.ViewName = viewName;
-            PagerViewComponent.DefaultNumberOfPagesToShow = defaultNumberOfPagesToShow;
+        public static void AddPaging(this IServiceCollection services, PagingOptions options) {
+            AddPaging(services);
+            PagingOptions.Current = options;
         }
 
     }

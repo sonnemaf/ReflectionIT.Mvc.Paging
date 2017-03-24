@@ -76,7 +76,7 @@ namespace ReflectionIT.Mvc.Paging {
             return dict;
         }
 
-        public int NumberOfPagesToShow { get; set; } = PagerViewComponent.DefaultNumberOfPagesToShow;
+        public int NumberOfPagesToShow { get; set; } = PagingOptions.Current.DefaultNumberOfPagesToShow;
 
         public int StartPageIndex {
             get {
