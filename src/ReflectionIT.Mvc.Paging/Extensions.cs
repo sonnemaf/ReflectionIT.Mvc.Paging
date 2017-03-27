@@ -110,9 +110,9 @@ namespace ReflectionIT.Mvc.Paging {
             });
         }
 
-        public static void AddPaging(this IServiceCollection services, PagingOptions options) {
+        public static void AddPaging(this IServiceCollection services, Action<PagingOptions> configureOptions) {
             AddPaging(services);
-            PagingOptions.Current = options;
+            configureOptions(PagingOptions.Current);
         }
 
     }
