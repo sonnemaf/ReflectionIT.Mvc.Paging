@@ -7,7 +7,7 @@
 <h1>Products</h1>
 
 <form method="get" class="form-inline">
-    <input name="filter" class="form-control" value="@ViewData["Filter"]" />&nbsp;
+    <input name="filter" class="form-control" value="@Model.RouteValue["Filter"]" />&nbsp;
     <button type="submit" class="btn btn-info">Search</button>
 </form>
 

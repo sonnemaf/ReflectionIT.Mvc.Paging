@@ -32,7 +32,6 @@ namespace SampleApp.Controllers {
         //                        .OrderBy(p => p.ProductName).AsQueryable();
 
         //    if (!string.IsNullOrEmpty(filter)) {
-        //        ViewData["Filter"] = filter;
         //        qry = qry.Where(p => p.ProductName.StartsWith(filter));
         //    }
 
