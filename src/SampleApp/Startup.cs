@@ -53,20 +53,6 @@ namespace SampleApp {
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
-            //Get a reference to the assembly that contains the view components
-            var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
-
-            //Create an EmbeddedFileProvider for that assembly
-            var embeddedFileProvider = new EmbeddedFileProvider(
-                assembly,
-                "ReflectionIT.Mvc.Paging"
-            );
-
-            //Add the file provider to the Razor view engine
-            services.Configure<RazorViewEngineOptions>(options => {
-                options.FileProviders.Add(embeddedFileProvider);
-            });
-
             // Register ViewComponent using an EmbeddedFileProvider & setting some options
             services.AddPaging(options => {
                 options.ViewName = "Bootstrap4";
