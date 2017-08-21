@@ -21,8 +21,8 @@
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC6 EntityFrameworkCore</PackageTags>
-    <PackageReleaseNotes>Improved PagingOptions</PackageReleaseNotes>
-    <Version>1.6.0</Version>
+    <PackageReleaseNotes>Removed action parameter from the SortableHeaderFor() extension methods. It is now pickup from the Model. This will break the compatibility, sorry!</PackageReleaseNotes>
+    <Version>1.7.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

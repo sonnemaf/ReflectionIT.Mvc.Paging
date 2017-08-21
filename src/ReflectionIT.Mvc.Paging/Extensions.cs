@@ -17,13 +17,13 @@ namespace ReflectionIT.Mvc.Paging {
             return html.DisplayNameForInnerType<TModel, TValue>(expression);
         }
 
-        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, IPagingList pagingList, string action = "Index") where TModel : class {
-            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression), pagingList, action);
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, IPagingList pagingList) where TModel : class {
+            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression), pagingList);
         }
 
-        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, IPagingList pagingList, string action = "Index") where TModel : class {
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, IPagingList pagingList) where TModel : class {
             var bldr = new HtmlContentBuilder();
-            bldr.AppendHtml(SortableHeaderFor(html, expression, sortColumn, action));
+            bldr.AppendHtml(SortableHeaderFor(html, expression, sortColumn));
 
             if (pagingList.SortExpression == sortColumn) {
                 bldr.AppendHtml(PagingOptions.Current.HtmlIndicatorDown);
@@ -35,12 +35,12 @@ namespace ReflectionIT.Mvc.Paging {
             return bldr;
         }
 
-        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, string action = "Index") where TModel : class {
-            return html.ActionLink(html.DisplayNameForInnerType(expression), action, html.ViewData.Model.GetRouteValueForSort(sortColumn));
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn) where TModel : class {
+            return html.ActionLink(html.DisplayNameForInnerType(expression), html.ViewData.Model.Action, html.ViewData.Model.GetRouteValueForSort(sortColumn));
         }
 
-        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string action = "Index") where TModel : class {
-            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression), action);
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
+            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression));
         }
 
         public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, string sortExpression) where T : class {
