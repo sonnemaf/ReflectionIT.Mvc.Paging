@@ -17,14 +17,20 @@ namespace ReflectionIT.Mvc.Paging {
             return html.DisplayNameForInnerType<TModel, TValue>(expression);
         }
 
+        [Obsolete("remove the pagingList parameter, it is not used any more")]
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, IPagingList pagingList) where TModel : class {
             return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression), pagingList);
         }
 
+        [Obsolete("remove the pagingList parameter, it is not used any more")]
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, IPagingList pagingList) where TModel : class {
-            var bldr = new HtmlContentBuilder();
-            bldr.AppendHtml(SortableHeaderFor(html, expression, sortColumn));
+            return SortableHeaderFor(html, expression, sortColumn);
+        }
 
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn) where TModel : class {
+            var bldr = new HtmlContentBuilder();
+            bldr.AppendHtml(html.ActionLink(html.DisplayNameForInnerType(expression), html.ViewData.Model.Action, html.ViewData.Model.GetRouteValueForSort(sortColumn)));
+            IPagingList pagingList = html.ViewData.Model;
             if (pagingList.SortExpression == sortColumn) {
                 bldr.AppendHtml(PagingOptions.Current.HtmlIndicatorDown);
             } else {
@@ -33,10 +39,6 @@ namespace ReflectionIT.Mvc.Paging {
                 }
             }
             return bldr;
-        }
-
-        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn) where TModel : class {
-            return html.ActionLink(html.DisplayNameForInnerType(expression), html.ViewData.Model.Action, html.ViewData.Model.GetRouteValueForSort(sortColumn));
         }
 
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {

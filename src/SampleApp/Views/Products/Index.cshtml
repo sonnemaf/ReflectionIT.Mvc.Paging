@@ -20,10 +20,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.SortableHeaderFor(model => model.ProductName, this.Model)
+            @Html.SortableHeaderFor(model => model.ProductName)
         </th>
         <th>
-            @Html.SortableHeaderFor(model => model.Supplier.CompanyName, "Supplier.CompanyName, ProductName", this.Model)
+            @Html.SortableHeaderFor(model => model.Supplier.CompanyName, "Supplier.CompanyName, ProductName")
         </th>
         <th>
             @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName, ProductName", this.Model)
