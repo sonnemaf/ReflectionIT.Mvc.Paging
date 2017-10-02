@@ -18,10 +18,12 @@
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC MVC6 EntityFrameworkCore</PackageTags>
-    <PackageReleaseNotes>SortableHeader improvements</PackageReleaseNotes>
-    <Version>2.0.1</Version>
-    <AssemblyVersion>2.0.1.0</AssemblyVersion>
-    <FileVersion>2.0.1.0</FileVersion>
+    <PackageReleaseNotes>PagingList&lt;T&gt;.Create() method replaced by PagingList.Create&lt;T&gt;()
+Replaced Dependency Microsoft.AspNetCore.All by separete NuGet packages
+Replaced Dependency Microsoft.EntityFrameworkCore.SqlServer with Microsoft.EntityFrameworkCore.Relational</PackageReleaseNotes>
+    <Version>2.0.2</Version>
+    <AssemblyVersion>2.0.2.0</AssemblyVersion>
+    <FileVersion>2.0.2.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
@@ -29,17 +31,12 @@
     <EmbeddedResource Include="Views\**\*.cshtml" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
   </ItemGroup>
 
-  <!--<ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.ViewFeatures" Version="1.1.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Routing" Version="1.1.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="1.1.1" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="1.1.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="1.1.1" />
-  </ItemGroup>-->
-
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
   </ItemGroup>
 
   <Target Name="PostcompileScript" AfterTargets="Build">

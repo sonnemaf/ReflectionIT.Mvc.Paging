@@ -38,7 +38,7 @@ namespace SampleApp.Controllers {
 
             var qry = _context.Suppliers.AsNoTracking().OrderBy(p => p.CompanyName);
 
-            var model = await PagingList<Suppliers>.CreateAsync(qry, 10, page);
+            var model = await PagingList.CreateAsync(qry, 10, page);
 
             return View(model);
         }

@@ -32,7 +32,7 @@ namespace SampleApp.Controllers {
         //                        .OrderBy(p => p.ProductName).AsQueryable();
 
         //    if (!string.IsNullOrEmpty(filter)) {
-        //        qry = qry.Where(p => p.ProductName.StartsWith(filter));
+        //        qry = qry.Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
         //    }
 
         //    return View(await qry.ToListAsync());
@@ -46,10 +46,10 @@ namespace SampleApp.Controllers {
                 .AsQueryable();
 
             if (!string.IsNullOrWhiteSpace(filter)) {
-                qry = qry.Where(p => p.ProductName.Contains(filter));
+                qry = qry.Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
             }
 
-            var model = await PagingList<Products>.CreateAsync(qry, 10, page, sortExpression, "ProductName");
+            var model = await PagingList.CreateAsync(qry, 10, page, sortExpression, "ProductName");
 
             model.RouteValue = new RouteValueDictionary {
                 { "filter", filter}
@@ -64,7 +64,7 @@ namespace SampleApp.Controllers {
         //public async Task<IActionResult> Index(string filter) {
         //    ViewData["Filter"] = filter;
         //    var qry = _context.Products.AsNoTracking().Include(p => p.Category).Include(p => p.Supplier)
-        //                                .Where(p => p.ProductName.Contains(filter));
+        //                                .Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
         //    return View(await qry.ToListAsync());
         //}
 

@@ -11,7 +11,6 @@ namespace ReflectionIT.Mvc.Paging {
             get {
                 return _current;
             }
-
             set {
                 if (value == null) {
                     throw new ArgumentNullException(nameof(Current), "PagingOptions must be set");
