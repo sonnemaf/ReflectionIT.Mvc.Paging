@@ -38,7 +38,11 @@ namespace SampleApp.Controllers {
 
             var qry = _context.Suppliers.AsNoTracking().OrderBy(p => p.CompanyName);
 
-            var model = await PagingList.CreateAsync(qry, 10, page);
+            //Remove EntityFramework control
+            var list = await qry.ToListAsync();
+            var qry2 = list.AsQueryable();
+
+            var model = await PagingList.CreateAsync(qry2, 10, page, "ContactName", "ContactName");
 
             return View(model);
         }
