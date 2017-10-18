@@ -14,16 +14,17 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Title>ReflectionIT.Mvc.Paging</Title>
-    <Description>ASP.NET Core 2.0 (MVC 6) Library to support Paging (including sorting and filtering) for Entity Framework Core 2.0</Description>
+    <Description>ASP.NET Core 2.0 (MVC 6) Library to support Paging (including sorting and filtering) for Entity Framework Core 2.0 and IEnumerableOfT datasources</Description>
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC MVC6 EntityFrameworkCore</PackageTags>
-    <PackageReleaseNotes>PagingList&lt;T&gt;.Create() method replaced by PagingList.Create&lt;T&gt;()
-Replaced Dependency Microsoft.AspNetCore.All by separete NuGet packages
-Replaced Dependency Microsoft.EntityFrameworkCore.SqlServer with Microsoft.EntityFrameworkCore.Relational</PackageReleaseNotes>
-    <Version>2.0.2</Version>
-    <AssemblyVersion>2.0.2.0</AssemblyVersion>
-    <FileVersion>2.0.2.0</FileVersion>
+    <PackageReleaseNotes>Support for IEnumberable&lt;T&gt; datasources
+- Use PagingList&lt;T&gt;.CreateAsync() for EntityFramework  (IQueryable&lt;T&gt;)
+- Use PagingList.Create&lt;T&gt;() for IEnumerable&lt;T&gt;
+</PackageReleaseNotes>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 

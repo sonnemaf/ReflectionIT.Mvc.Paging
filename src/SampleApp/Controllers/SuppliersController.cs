@@ -30,15 +30,11 @@ namespace SampleApp.Controllers {
 
 
         // GET: Suppliers
-        //public async Task<IActionResult> Index()
-        //{
-        //    return View(await _context.Suppliers.ToListAsync());
-        //}
-        public async Task<IActionResult> Index(int page = 1) {
+        public IActionResult Index(int page = 1) {
 
             var qry = _context.Suppliers.AsNoTracking().OrderBy(p => p.CompanyName);
 
-            var model = await PagingList.CreateAsync(qry, 10, page);
+            var model = PagingList.Create(qry, 10, page);
 
             return View(model);
         }

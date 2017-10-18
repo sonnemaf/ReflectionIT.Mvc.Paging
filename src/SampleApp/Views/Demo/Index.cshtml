@@ -1,0 +1,38 @@
+@model PagingList<SampleApp.Models.DemoViewModel>
+
+@{
+    ViewData["Title"] = "Demo";
+}
+
+<h1>Demo</h1>
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model"></vc:pager>
+</nav>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.SortableHeaderFor(model => model.Name)
+        </th>
+        <th>
+            @Html.SortableHeaderFor(model => model.Number, "Number,Name")
+        </th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Number)
+            </td>
+        </tr>
+    }
+</table>
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>
+
