@@ -12,6 +12,7 @@ namespace ReflectionIT.Mvc.Paging {
         public int PageIndex { get; }
         public int PageCount { get; }
         public string Action { get; set; }
+        public string PageParameterName { get; set; }
         public string SortExpression { get; }
 
         public string DefaultSortExpression { get; }
@@ -31,6 +32,7 @@ namespace ReflectionIT.Mvc.Paging {
             this.PageIndex = pageIndex;
             this.PageCount = pageCount;
             this.Action = "Index";
+            this.PageParameterName = "page";
         }
 
         internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression)
@@ -47,7 +49,7 @@ namespace ReflectionIT.Mvc.Paging {
             var dict = this.RouteValue == null ? new RouteValueDictionary() :
                                                  new RouteValueDictionary(this.RouteValue);
 
-            dict["page"] = pageIndex;
+            dict[this.PageParameterName] = pageIndex;
 
             if (this.SortExpression != this.DefaultSortExpression) {
                 dict["sortExpression"] = this.SortExpression;

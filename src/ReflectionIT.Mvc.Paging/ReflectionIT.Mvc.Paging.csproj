@@ -19,12 +19,11 @@
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC MVC6 EntityFrameworkCore</PackageTags>
     <PackageReleaseNotes>Support for IEnumberable&lt;T&gt; datasources
-- Use PagingList&lt;T&gt;.CreateAsync() for EntityFramework  (IQueryable&lt;T&gt;)
-- Use PagingList.Create&lt;T&gt;() for IEnumerable&lt;T&gt;
+- Added a PageParameterName to the PagingListOfT which defaults to 'page'
 </PackageReleaseNotes>
-    <Version>2.1.0</Version>
-    <AssemblyVersion>2.1.0.0</AssemblyVersion>
-    <FileVersion>2.1.0.0</FileVersion>
+    <Version>2.2.0</Version>
+    <AssemblyVersion>2.2.0.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
