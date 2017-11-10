@@ -1,15 +1,13 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Company>Reflection IT</Company>
     <Authors>Fons Sonnemans</Authors>
     <Copyright>Reflection IT</Copyright>
     <AssemblyTitle>ReflectionIT.Mvc.Paging</AssemblyTitle>
-    <VersionPrefix>2.0.0</VersionPrefix>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
     <AssemblyName>ReflectionIT.Mvc.Paging</AssemblyName>
     <PackageId>ReflectionIT.Mvc.Paging</PackageId>
-    <NetStandardImplicitPackageVersion>1.6.1</NetStandardImplicitPackageVersion>
     <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
@@ -18,13 +16,20 @@
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC MVC6 EntityFrameworkCore</PackageTags>
-    <PackageReleaseNotes>Support for IEnumberable&lt;T&gt; datasources
-- Added a PageParameterName to the PagingListOfT which defaults to 'page'
-</PackageReleaseNotes>
-    <Version>2.2.0</Version>
-    <AssemblyVersion>2.2.0.0</AssemblyVersion>
-    <FileVersion>2.2.0.0</FileVersion>
+    <PackageReleaseNotes>
+      - Swithed to .NET Standard 2.0 TargetFramework
+      - Added support for IEnumberable&lt;T&gt; datasources
+      - Added a SortExpressionParameterName to the PagingListOfT which defaults to 'SortExpression'
+      - Interface IPagingListOfT added
+    </PackageReleaseNotes>
+    <Version>2.3.0</Version>
+    <AssemblyVersion>2.3.0.0</AssemblyVersion>
+    <FileVersion>2.3.0.0</FileVersion>
+    <!--
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PreserveCompilationContext>true</PreserveCompilationContext>
+    <MvcRazorOutputPath Condition="'$(TargetFramework)'!=''">obj\precompiled\$(TargetFramework)</MvcRazorOutputPath>
+    -->
   </PropertyGroup>
 
   <ItemGroup>
@@ -32,15 +37,35 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="ReflectionIT.Mvc.Paging.csprojx" />
+  </ItemGroup>
+
+  <!--
+  <ItemGroup>
+    <Content Include="obj\precompiled\**\*" Pack="true" PackagePath="Views\%(RecursiveDir)%(FileName)%(Extension)" />
+  </ItemGroup>
+  -->
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+    <!--
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation">
+      <Version>2.0.0</Version>
+      <PrivateAssets>All</PrivateAssets>
+    </PackageReference>
+    -->
   </ItemGroup>
 
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
   </Target>
+
+  <!--
+  <Target Name="PrecompileRazorViews" AfterTargets="Build" DependsOnTargets="MvcRazorPrecompile" Condition="'$(TargetFramework)'!=''" />
+  -->
 
 </Project>

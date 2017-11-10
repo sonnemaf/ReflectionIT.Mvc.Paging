@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Routing;
+using System.Collections.Generic;
 
 namespace ReflectionIT.Mvc.Paging {
     public interface IPagingList {
@@ -12,7 +13,6 @@ namespace ReflectionIT.Mvc.Paging {
         int NumberOfPagesToShow { get; set; }
         int StartPageIndex { get; }
         int StopPageIndex { get; }
-
-
     }
+
 }

@@ -7,12 +7,13 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ReflectionIT.Mvc.Paging {
 
-    public class PagingList<T> : List<T>, IPagingList where T : class {
+    public class PagingList<T> : List<T>, IPagingList<T> where T : class {
 
         public int PageIndex { get; }
         public int PageCount { get; }
         public string Action { get; set; }
         public string PageParameterName { get; set; }
+        public string SortExpressionParameterName { get; set; }
         public string SortExpression { get; }
 
         public string DefaultSortExpression { get; }
@@ -33,6 +34,7 @@ namespace ReflectionIT.Mvc.Paging {
             this.PageCount = pageCount;
             this.Action = "Index";
             this.PageParameterName = "page";
+            this.SortExpressionParameterName = "sortExpression";
         }
 
         internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression)
@@ -52,7 +54,7 @@ namespace ReflectionIT.Mvc.Paging {
             dict[this.PageParameterName] = pageIndex;
 
             if (this.SortExpression != this.DefaultSortExpression) {
-                dict["sortExpression"] = this.SortExpression;
+                dict[SortExpressionParameterName] = this.SortExpression;
             }
 
             return dict;
@@ -67,7 +69,7 @@ namespace ReflectionIT.Mvc.Paging {
                 sortExpression = "-" + sortExpression;
             }
 
-            dict["sortExpression"] = sortExpression;
+            dict[SortExpressionParameterName] = sortExpression;
 
             return dict;
         }
