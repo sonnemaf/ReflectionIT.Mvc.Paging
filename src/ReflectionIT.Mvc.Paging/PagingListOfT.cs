@@ -10,7 +10,8 @@ namespace ReflectionIT.Mvc.Paging {
     public class PagingList<T> : List<T>, IPagingList<T> where T : class {
 
         public int PageIndex { get; }
-        public int PageCount { get; }
+        public int PageCount { get; }        
+        public int TotalRecordCount { get; }
         public string Action { get; set; }
         public string PageParameterName { get; set; }
         public string SortExpressionParameterName { get; set; }
@@ -28,8 +29,9 @@ namespace ReflectionIT.Mvc.Paging {
             return PagingList.CreateAsync(qry, pageSize, pageIndex, sortExpression, defaultSortExpression);
         }
 
-        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount)
+        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, int? totalRecordCount)
             : base(list) {
+            this.TotalRecordCount = totalRecordCount ?? 0;
             this.PageIndex = pageIndex;
             this.PageCount = pageCount;
             this.Action = "Index";
@@ -37,9 +39,9 @@ namespace ReflectionIT.Mvc.Paging {
             this.SortExpressionParameterName = "sortExpression";
         }
 
-        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression)
-            : this(list, pageSize, pageIndex, pageCount) {
-
+        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression, int? totalRecordCount)
+            : this(list, pageSize, pageIndex, pageCount, totalRecordCount) {
+            
             this.SortExpression = sortExpression;
             this.DefaultSortExpression = defaultSortExpression;
         }
