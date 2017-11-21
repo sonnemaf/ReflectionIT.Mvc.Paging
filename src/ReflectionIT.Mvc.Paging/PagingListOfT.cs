@@ -10,7 +10,7 @@ namespace ReflectionIT.Mvc.Paging {
     public class PagingList<T> : List<T>, IPagingList<T> where T : class {
 
         public int PageIndex { get; }
-        public int PageCount { get; }        
+        public int PageCount { get; }
         public int TotalRecordCount { get; }
         public string Action { get; set; }
         public string PageParameterName { get; set; }
@@ -19,7 +19,7 @@ namespace ReflectionIT.Mvc.Paging {
 
         public string DefaultSortExpression { get; }
 
-        [Obsolete("Use PagingList.CreateAsync<T>() instead")] 
+        [Obsolete("Use PagingList.CreateAsync<T>() instead")]
         public static Task<PagingList<T>> CreateAsync(IOrderedQueryable<T> qry, int pageSize, int pageIndex) {
             return PagingList.CreateAsync(qry, pageSize, pageIndex);
         }
@@ -29,9 +29,9 @@ namespace ReflectionIT.Mvc.Paging {
             return PagingList.CreateAsync(qry, pageSize, pageIndex, sortExpression, defaultSortExpression);
         }
 
-        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, int? totalRecordCount)
+        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, int totalRecordCount)
             : base(list) {
-            this.TotalRecordCount = totalRecordCount ?? 0;
+            this.TotalRecordCount = totalRecordCount;
             this.PageIndex = pageIndex;
             this.PageCount = pageCount;
             this.Action = "Index";
@@ -39,9 +39,9 @@ namespace ReflectionIT.Mvc.Paging {
             this.SortExpressionParameterName = "sortExpression";
         }
 
-        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression, int? totalRecordCount)
+        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression, int totalRecordCount)
             : this(list, pageSize, pageIndex, pageCount, totalRecordCount) {
-            
+
             this.SortExpression = sortExpression;
             this.DefaultSortExpression = defaultSortExpression;
         }
