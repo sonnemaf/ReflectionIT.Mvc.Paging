@@ -3,7 +3,7 @@ ASP.NET Core 2.0 MVC Paging (including filtering and sorting) solution using Ent
 
 More info: https://reflectionit.nl/blog/2017/paging-in-asp-net-core-mvc-and-entityframework-core
 
-You can also use the old NuGet package https://www.nuget.org/packages/ReflectionIT.Mvc.Paging/
+You can also use the NuGet package https://www.nuget.org/packages/ReflectionIT.Mvc.Paging/
 
 `Install-Package ReflectionIT.Mvc.Paging`                 
 
