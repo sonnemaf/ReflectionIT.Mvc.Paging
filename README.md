@@ -6,3 +6,5 @@ More info: https://reflectionit.nl/blog/2017/paging-in-asp-net-core-mvc-and-enti
 You can also use the NuGet package https://www.nuget.org/packages/ReflectionIT.Mvc.Paging/
 
 `Install-Package ReflectionIT.Mvc.Paging`                 
+
+* Now supports TotalRecordCount (2017-21-11) by mdemirci01
