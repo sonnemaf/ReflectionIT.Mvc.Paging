@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
 namespace ReflectionIT.Mvc.Paging {
+#pragma warning disable IDE0003 // Remove qualification
 
     public class PagingList<T> : List<T>, IPagingList<T> where T : class {
 
@@ -80,7 +81,7 @@ namespace ReflectionIT.Mvc.Paging {
 
         public int StartPageIndex {
             get {
-                int half = (int)((NumberOfPagesToShow - 0.5) / 2);
+                var half = (int)((NumberOfPagesToShow - 0.5) / 2);
                 var start = Math.Max(1, this.PageIndex - half);
                 if (start + NumberOfPagesToShow - 1 > this.PageCount) {
                     start = this.PageCount - NumberOfPagesToShow + 1;
@@ -89,11 +90,8 @@ namespace ReflectionIT.Mvc.Paging {
             }
         }
 
-        public int StopPageIndex {
-            get {
-                return Math.Min(this.PageCount, StartPageIndex + NumberOfPagesToShow - 1);
-            }
-        }
+        public int StopPageIndex => Math.Min(this.PageCount, StartPageIndex + NumberOfPagesToShow - 1);
 
     }
+#pragma warning restore IDE0003 // Remove qualification
 }

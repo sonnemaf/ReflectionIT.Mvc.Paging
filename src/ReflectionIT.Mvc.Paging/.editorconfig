@@ -1,3 +1,4 @@
+# Suppress: EC103
 # http://EditorConfig.org
 
 # This file is the top-most EditorConfig file
@@ -165,12 +166,12 @@ csharp_indent_case_contents                                                  = t
 csharp_indent_labels                                                         = no_change : warning
 csharp_indent_switch_labels                                                  = true : warning
 # Style Options
-csharp_style_conditional_delegate_call                                       = true : warning
+csharp_style_conditional_delegate_call                                       = true : suggestion
 csharp_style_expression_bodied_accessors                                     = true : warning
-csharp_style_expression_bodied_constructors                                  = true : warning
-csharp_style_expression_bodied_indexers                                      = true : warning
-csharp_style_expression_bodied_methods                                       = true : warning
-csharp_style_expression_bodied_operators                                     = true : warning
+csharp_style_expression_bodied_constructors                                  = false : suggestion
+csharp_style_expression_bodied_indexers                                      = false : suggestion
+csharp_style_expression_bodied_methods                                       = false : suggestion
+csharp_style_expression_bodied_operators                                     = false : suggestion
 csharp_style_expression_bodied_properties                                    = true : warning
 csharp_style_inlined_variable_declaration                                    = true : warning
 csharp_style_pattern_matching_over_as_with_null_check                        = true : warning

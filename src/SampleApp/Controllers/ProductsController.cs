@@ -11,12 +11,15 @@ using ReflectionIT.Mvc.Paging;
 using SampleApp.Models.Database;
 
 namespace SampleApp.Controllers {
+#pragma warning disable RIT0002 // Async method should be named with an Async suffix
+
     public class ProductsController : Controller {
         private readonly NorthwindContext _context;
 
         public ProductsController(NorthwindContext context) {
             _context = context;
         }
+
 
         //// GET: Products
         //public async Task<IActionResult> Index() {
@@ -187,4 +190,5 @@ namespace SampleApp.Controllers {
             return _context.Products.Any(e => e.ProductId == id);
         }
     }
+#pragma warning restore RIT0002 // Async method should be named with an Async suffix
 }

@@ -9,8 +9,9 @@ namespace ReflectionIT.Mvc.Paging {
         private static PropertyInfo GetPropertyInfo(Type objType, string name) {
             var properties = objType.GetProperties();
             var matchedProperty = properties.FirstOrDefault(p => p.Name == name);
-            if (matchedProperty == null)
+            if (matchedProperty == null) {
                 throw new ArgumentException("name");
+            }
 
             return matchedProperty;
         }
@@ -22,7 +23,7 @@ namespace ReflectionIT.Mvc.Paging {
         }
 
         public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> query, string name) {
-            int index = 0;
+            var index = 0;
             var a = name.Split(',');
             foreach (var item in a) {
                 var m = index++ > 0 ? "ThenBy" : "OrderBy";

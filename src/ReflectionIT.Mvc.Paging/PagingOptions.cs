@@ -8,15 +8,8 @@ namespace ReflectionIT.Mvc.Paging {
         private static PagingOptions _current = new PagingOptions();
 
         public static PagingOptions Current {
-            get {
-                return _current;
-            }
-            set {
-                if (value == null) {
-                    throw new ArgumentNullException(nameof(Current), "PagingOptions must be set");
-                }
-                _current = value;
-            }
+            get => _current;
+            set => _current = value ?? throw new ArgumentNullException(nameof(Current), "PagingOptions must be set");
         }
 
         public string ViewName { get; set; } = "Bootstrap3";

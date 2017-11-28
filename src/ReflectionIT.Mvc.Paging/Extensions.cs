@@ -13,6 +13,8 @@ namespace ReflectionIT.Mvc.Paging {
 
     public static class Extensions {
 
+#pragma warning disable IDE0022 // Use expression body for methods
+
         public static string DisplayNameFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
             return html.DisplayNameForInnerType<TModel, TValue>(expression);
         }
@@ -44,9 +46,10 @@ namespace ReflectionIT.Mvc.Paging {
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
             return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression));
         }
+#pragma warning restore IDE0022 // Use expression body for methods
 
         public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, string sortExpression) where T : class {
-            int index = 0;
+            var index = 0;
             var a = sortExpression.Split(',');
             foreach (var item in a) {
                 var m = index++ > 0 ? "ThenBy" : "OrderBy";
@@ -63,7 +66,7 @@ namespace ReflectionIT.Mvc.Paging {
             return source;
         }
 
-        private static LambdaExpression GenerateSelector<TEntity>(String propertyName, out Type resultType) where TEntity : class {
+        private static LambdaExpression GenerateSelector<TEntity>(string propertyName, out Type resultType) where TEntity : class {
             // Create a parameter to pass into the Lambda expression (Entity => Entity.OrderByField).
             var parameter = Expression.Parameter(typeof(TEntity), "Entity");
             //  create the selector part, but support child properties
@@ -71,10 +74,10 @@ namespace ReflectionIT.Mvc.Paging {
             Expression propertyAccess;
             if (propertyName.Contains('.')) {
                 // support to be sorted on child fields.
-                String[] childProperties = propertyName.Split('.');
+                var childProperties = propertyName.Split('.');
                 property = typeof(TEntity).GetProperty(childProperties[0]);
                 propertyAccess = Expression.MakeMemberAccess(parameter, property);
-                for (int i = 1; i < childProperties.Length; i++) {
+                for (var i = 1; i < childProperties.Length; i++) {
                     property = property.PropertyType.GetProperty(childProperties[i]);
                     propertyAccess = Expression.MakeMemberAccess(propertyAccess, property);
                 }
@@ -87,11 +90,10 @@ namespace ReflectionIT.Mvc.Paging {
             return Expression.Lambda(propertyAccess, parameter);
         }
 
-        private static MethodCallExpression GenerateMethodCall<TEntity>(IQueryable<TEntity> source, string methodName, String fieldName) where TEntity : class {
-            Type type = typeof(TEntity);
-            Type selectorResultType;
-            LambdaExpression selector = GenerateSelector<TEntity>(fieldName, out selectorResultType);
-            MethodCallExpression resultExp = Expression.Call(typeof(Queryable), methodName,
+        private static MethodCallExpression GenerateMethodCall<TEntity>(IQueryable<TEntity> source, string methodName, string fieldName) where TEntity : class {
+            var type = typeof(TEntity);
+            var selector = GenerateSelector<TEntity>(fieldName, out var selectorResultType);
+            var resultExp = Expression.Call(typeof(Queryable), methodName,
                                             new Type[] { type, selectorResultType },
                                             source.Expression, Expression.Quote(selector));
             return resultExp;
