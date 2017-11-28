@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Routing;
 using Microsoft.EntityFrameworkCore;
 
 namespace ReflectionIT.Mvc.Paging {
-#pragma warning disable IDE0003 // Remove qualification
 
     public class PagingList<T> : List<T>, IPagingList<T> where T : class {
 
@@ -57,7 +56,7 @@ namespace ReflectionIT.Mvc.Paging {
             dict[this.PageParameterName] = pageIndex;
 
             if (this.SortExpression != this.DefaultSortExpression) {
-                dict[SortExpressionParameterName] = this.SortExpression;
+                dict[this.SortExpressionParameterName] = this.SortExpression;
             }
 
             return dict;
@@ -72,7 +71,7 @@ namespace ReflectionIT.Mvc.Paging {
                 sortExpression = "-" + sortExpression;
             }
 
-            dict[SortExpressionParameterName] = sortExpression;
+            dict[this.SortExpressionParameterName] = sortExpression;
 
             return dict;
         }
@@ -81,17 +80,16 @@ namespace ReflectionIT.Mvc.Paging {
 
         public int StartPageIndex {
             get {
-                var half = (int)((NumberOfPagesToShow - 0.5) / 2);
+                var half = (int)((this.NumberOfPagesToShow - 0.5) / 2);
                 var start = Math.Max(1, this.PageIndex - half);
-                if (start + NumberOfPagesToShow - 1 > this.PageCount) {
-                    start = this.PageCount - NumberOfPagesToShow + 1;
+                if (start + this.NumberOfPagesToShow - 1 > this.PageCount) {
+                    start = this.PageCount - this.NumberOfPagesToShow + 1;
                 }
                 return Math.Max(1, start);
             }
         }
 
-        public int StopPageIndex => Math.Min(this.PageCount, StartPageIndex + NumberOfPagesToShow - 1);
+        public int StopPageIndex => Math.Min(this.PageCount, this.StartPageIndex + this.NumberOfPagesToShow - 1);
 
     }
-#pragma warning restore IDE0003 // Remove qualification
 }
