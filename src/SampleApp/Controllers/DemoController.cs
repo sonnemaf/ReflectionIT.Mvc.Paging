@@ -9,7 +9,7 @@ namespace SampleApp.Controllers
 {
     public class DemoController : Controller {
 
-        private static List<Models.DemoViewModel> _sampleData = GetSampleData();
+        private static readonly List<Models.DemoViewModel> _sampleData = GetSampleData();
 
         private static List<Models.DemoViewModel> GetSampleData() {
             return Enumerable.Range(1, 100).Select(n =>
