@@ -12,18 +12,15 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Title>ReflectionIT.Mvc.Paging</Title>
-    <Description>ASP.NET Core 2.0 (MVC 6) Library to support Paging (including sorting and filtering) for Entity Framework Core 2.0 and IEnumerableOfT datasources</Description>
+    <Description>ASP.NET Core 2.1 (MVC 6) Library to support Paging (including sorting and filtering) for Entity Framework Core 2.1 and IEnumerableOfT datasources</Description>
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC MVC6 EntityFrameworkCore</PackageTags>
-    <PackageReleaseNotes>
-      - Upgraded to latest version of ASP.NET Core 2 packages. (v2.0.3)
-      - TotalRecordCount property added to PagingListOfT
-      - Code Analyzers added
-    </PackageReleaseNotes>
-    <Version>2.4.0</Version>
-    <AssemblyVersion>2.4.0.0</AssemblyVersion>
-    <FileVersion>2.4.0.0</FileVersion>
+    <PackageReleaseNotes>- Upgrade to ASP.NET Core 2.1
+- Switched to Razor Class Library</PackageReleaseNotes>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
     <!--
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PreserveCompilationContext>true</PreserveCompilationContext>
@@ -32,8 +29,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0-rc1-final" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.0-rc1-final" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.0" />
   </ItemGroup>
 
   <Target Name="PostcompileScript" AfterTargets="Build">

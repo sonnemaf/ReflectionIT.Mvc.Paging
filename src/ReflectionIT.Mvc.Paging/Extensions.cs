@@ -99,6 +99,7 @@ namespace ReflectionIT.Mvc.Paging {
             return resultExp;
         }
 
+        [Obsolete("This call is not required any move since we moved to Razor Class Libraries")]
         public static void AddPaging(this IServiceCollection services) {
             ////Get a reference to the assembly that contains the view components
             //var assembly = typeof(ReflectionIT.Mvc.Paging.PagerViewComponent).GetTypeInfo().Assembly;
@@ -115,7 +116,7 @@ namespace ReflectionIT.Mvc.Paging {
         }
 
         public static void AddPaging(this IServiceCollection services, Action<PagingOptions> configureOptions) {
-            AddPaging(services);
+            //AddPaging(services);
             configureOptions(PagingOptions.Current);
         }
 
