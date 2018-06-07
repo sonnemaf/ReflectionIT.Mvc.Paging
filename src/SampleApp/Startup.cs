@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
 
 namespace SampleApp {
     public class Startup {
@@ -22,7 +23,7 @@ namespace SampleApp {
             services.AddDbContext<NorthwindContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Northwind")));
 
-            services.AddMvc();
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -40,14 +41,17 @@ namespace SampleApp {
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
 
             if (env.IsDevelopment()) {
-                app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
+                app.UseDeveloperExceptionPage();
+                //app.UseBrowserLink();
             } else {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseMvc(routes => {
                 routes.MapRoute(

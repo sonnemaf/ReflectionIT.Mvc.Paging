@@ -9,7 +9,7 @@
 
 @if (this.Model.PageCount > 1) {
     <ul class="pagination">
-
+        
         @if (start > 1) {
             <li class="page-item">
                 <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(1))" aria-label="First" class="page-link">

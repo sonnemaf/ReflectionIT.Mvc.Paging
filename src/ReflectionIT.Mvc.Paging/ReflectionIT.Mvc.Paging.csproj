@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
@@ -12,18 +12,15 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <Title>ReflectionIT.Mvc.Paging</Title>
-    <Description>ASP.NET Core 2.0 (MVC 6) Library to support Paging (including sorting and filtering) for Entity Framework Core 2.0 and IEnumerableOfT datasources</Description>
+    <Description>ASP.NET Core 2.1 (MVC 6) Library to support Paging (including sorting and filtering) for Entity Framework Core 2.1 and IEnumerableOfT datasources</Description>
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC MVC6 EntityFrameworkCore</PackageTags>
-    <PackageReleaseNotes>
-      - Upgraded to latest version of ASP.NET Core 2 packages. (v2.0.3)
-      - TotalRecordCount property added to PagingListOfT
-      - Code Analyzers added
-    </PackageReleaseNotes>
-    <Version>2.4.0</Version>
-    <AssemblyVersion>2.4.0.0</AssemblyVersion>
-    <FileVersion>2.4.0.0</FileVersion>
+    <PackageReleaseNotes>- Upgrade to ASP.NET Core 2.1
+- Switched to Razor Class Library</PackageReleaseNotes>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <FileVersion>3.0.0.0</FileVersion>
     <!--
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PreserveCompilationContext>true</PreserveCompilationContext>
@@ -32,40 +29,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Views\**\*.cshtml" Exclude="bin\**;obj\**;**\*.xproj;packages\**;@(EmbeddedResource)" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Remove="ReflectionIT.Mvc.Paging.csprojx" />
-  </ItemGroup>
-
-  <!--
-  <ItemGroup>
-    <Content Include="obj\precompiled\**\*" Pack="true" PackagePath="Views\%(RecursiveDir)%(FileName)%(Extension)" />
-  </ItemGroup>
-  -->
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.1" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor" Version="2.0.1" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.1" />
-    <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
-    <PackageReference Include="ReflectionIT.Analyzer" Version="1.1.0" />
-    <!--
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.ViewCompilation">
-      <Version>2.0.0</Version>
-      <PrivateAssets>All</PrivateAssets>
-    </PackageReference>
-    -->
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.1.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.1.0" />
   </ItemGroup>
 
   <Target Name="PostcompileScript" AfterTargets="Build">
     <Exec Command="dotnet pack --no-build --configuration $(Configuration)" />
   </Target>
-
-  <!--
-  <Target Name="PrecompileRazorViews" AfterTargets="Build" DependsOnTargets="MvcRazorPrecompile" Condition="'$(TargetFramework)'!=''" />
-  -->
 
 </Project>
