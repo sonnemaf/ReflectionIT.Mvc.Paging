@@ -1,4 +1,4 @@
-@model IEnumerable<SampleApp.Models.Database.Suppliers>
+@model ReflectionIT.Mvc.Paging.PagingList<SampleApp.Models.Database.Suppliers>
 
 @{
     ViewData["Title"] = "Suppliers";
@@ -11,7 +11,9 @@
 </p>
 
 <nav aria-label="Suppliers navigation example">
-    @await Component.InvokeAsync("Pager", new { pagingList = this.Model })
+    @*@await Component.InvokeAsync("Pager", new { pagingList = this.Model })*@
+    <vc:pager paging-list="this.Model" />
+    <vc:test-thing />
 </nav>
 
 <table class="table">
