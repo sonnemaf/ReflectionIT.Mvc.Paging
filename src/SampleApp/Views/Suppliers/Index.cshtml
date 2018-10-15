@@ -12,8 +12,10 @@
 
 <nav aria-label="Suppliers navigation example">
     @*@await Component.InvokeAsync("Pager", new { pagingList = this.Model })*@
-    <vc:pager paging-list="this.Model" />
-    <vc:test-thing />
+    @*<vc:pager paging-list="this.Model" />
+    <vc:test-thing />*@
+    <partial name="PagerBootstrap4" model="@this.Model" />
+    @*<pager model="Model" />*@
 </nav>
 
 <table class="table">

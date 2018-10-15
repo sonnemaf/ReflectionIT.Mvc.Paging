@@ -1,0 +1,52 @@
+﻿@model  ReflectionIT.Mvc.Paging.IPagingList
+
+@* Boostrap 4 based pager *@
+
+@{
+    var start = this.Model.StartPageIndex;
+    var stop = this.Model.StopPageIndex;
+}
+
+@if (this.Model.PageCount > 1) {
+    <ul class="pagination">
+        
+        @if (start > 1) {
+            <li class="page-item">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(1))" aria-label="First" class="page-link">
+                    <span aria-hidden="true">1</span>
+                </a>
+            </li>
+        }
+
+        @if (this.Model.PageIndex > 1) {
+            <li class="page-item">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageIndex - 1))" aria-label="Previous" class="page-link">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        }
+
+        @for (int i = start; i <= stop; i++) {
+            <li class="page-item @((Model.PageIndex == i) ? "active" : null)">
+                @Html.ActionLink(i.ToString(), Model.Action, Model.GetRouteValueForPage(i), new { @class = "page-link" })
+            </li>
+        }
+
+        @if (this.Model.PageIndex < this.Model.PageCount) {
+            <li class="page-item">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageIndex + 1))" aria-label="Next" class="page-link">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        }
+
+        @if (stop < this.Model.PageCount) {
+            <li class="page-item">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageCount))" aria-label="Last" class="page-link">
+                    <span aria-hidden="true">@this.Model.PageCount</span>
+                </a>
+            </li>
+        }
+
+    </ul>
+}
