@@ -16,15 +16,17 @@
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC EntityFrameworkCore Paging</PackageTags>
-    <PackageReleaseNotes>- ConfigureAwait(false) added to Async methods
-- PagerBootstrap3 and PagerBootstrap4 partial views added to the Views/Shared folder</PackageReleaseNotes>
-    <Version>3.1.0.0</Version>
+    <PackageReleaseNotes>Signed the assemlby with a Strong Name</PackageReleaseNotes>
+    <Version>3.2.0.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
     <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>ReflectionIT.Mvc.Paging.snk</AssemblyOriginatorKeyFile>
   </PropertyGroup>
 
   <ItemGroup>
