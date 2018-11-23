@@ -1,4 +1,4 @@
-# Suppress: EC103
+# Suppress: EC114
 # http://EditorConfig.org
 
 # This file is the top-most EditorConfig file
@@ -13,9 +13,6 @@ insert_final_newline     = false
 trim_trailing_whitespace = true
 
 # Solution Files
-[*.sln]
-indent_style = tab
-
 # XML Project Files
 [*.{csproj,vbproj,vcxproj,vcxproj.filters,proj,projitems,shproj}]
 indent_size = 2
@@ -24,18 +21,11 @@ indent_size = 2
 [*.{json,xml,yml,config,props,targets,nuspec,resx,ruleset,vsixmanifest,vsct}]
 indent_size = 2
 
-# Markdown Files
-[*.md]
-trim_trailing_whitespace = false
-
 # Web Files
-[*.{htm,html,js,ts,css,scss,less}]
-indent_size          = 2
+[*.{htm,html,js,ts,css,scss,less,cshtml}]
+indent_size          = 4
 insert_final_newline = true
 
-# Bash Files
-[*.sh]
-end_of_line = lf
 
 # Dotnet Code Style Settings
 # See https://docs.microsoft.com/en-us/visualstudio/ide/editorconfig-code-style-settings-reference
@@ -163,7 +153,7 @@ dotnet_naming_symbols.private_field.applicable_kinds               = field
 dotnet_naming_rule.general_naming.severity                         = warning
 dotnet_naming_rule.general_naming.symbols                          = general
 dotnet_naming_rule.general_naming.style                            = pascal_case_style
-dotnet_naming_symbols.general.applicable_kinds                     = class,struct,enum,property,method,event,delegate,namespace,type_parameter
+dotnet_naming_symbols.general.applicable_kinds                     = class,struct,enum,property,method,event,delegate,namespace,type_parameter,local_function
 dotnet_naming_symbols.general.applicable_accessibilities           = *
 
 # Everything else is camelCase
