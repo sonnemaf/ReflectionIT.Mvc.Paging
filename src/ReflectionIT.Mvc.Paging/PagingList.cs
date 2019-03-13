@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ReflectionIT.Mvc.Paging {
 
-    public class PagingList {
+    public static class PagingList {
 
         /// <summary>
         /// Create a paging list based on the EntityFramework ordered query 

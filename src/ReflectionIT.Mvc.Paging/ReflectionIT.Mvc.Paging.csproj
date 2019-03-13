@@ -16,8 +16,8 @@
     <PackageLicenseUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/blob/master/License.txt</PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC EntityFrameworkCore Paging</PackageTags>
-    <PackageReleaseNotes>Descending sort bug fix, You can now add minus '-' as the first character in the sortColumn parameter of the SortableHeaderFor() extension method.</PackageReleaseNotes>
-    <Version>3.3.1.0</Version>
+    <PackageReleaseNotes>Overload Method added to the PagingList class -&gt; PagingList&lt;T&gt; Create&lt;T&gt;(IEnumerable&lt;T&gt; orderedQuery, int pageSize, int pageIndex, int totalRecordCount, string sortExpression, string defaultSortExpression), https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/pull/18</PackageReleaseNotes>
+    <Version>3.4.0.0</Version>
     <AssemblyVersion>$(Version)</AssemblyVersion>
     <FileVersion>$(Version)</FileVersion>
 
