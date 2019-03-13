@@ -33,12 +33,9 @@ namespace ReflectionIT.Mvc.Paging {
             var bldr = new HtmlContentBuilder();
             bldr.AppendHtml(html.ActionLink(html.DisplayNameForInnerType(expression), html.ViewData.Model.Action, html.ViewData.Model.GetRouteValueForSort(sortColumn)));
             IPagingList pagingList = html.ViewData.Model;
-            if (pagingList.SortExpression == sortColumn) {
-                bldr.AppendHtml(PagingOptions.Current.HtmlIndicatorDown);
-            } else {
-                if (pagingList.SortExpression == "-" + sortColumn) {
-                    bldr.AppendHtml(PagingOptions.Current.HtmlIndicatorUp);
-                }
+
+            if (pagingList.SortExpression == sortColumn || "-" + pagingList.SortExpression == sortColumn || pagingList.SortExpression == "-" + sortColumn) {
+                bldr.AppendHtml(pagingList.SortExpression.StartsWith("-") ? PagingOptions.Current.HtmlIndicatorUp : PagingOptions.Current.HtmlIndicatorDown);
             }
             return bldr;
         }

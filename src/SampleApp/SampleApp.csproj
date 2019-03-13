@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.All" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -15,6 +16,13 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ReflectionIT.Mvc.Paging\ReflectionIT.Mvc.Paging.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Test\Controllers\" />
+    <Folder Include="Areas\Test\Data\" />
+    <Folder Include="Areas\Test\Models\" />
+    <Folder Include="Areas\Test\Views\" />
   </ItemGroup>
 
 </Project>

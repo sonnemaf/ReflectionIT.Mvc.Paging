@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Routing;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Routing;
 
 namespace ReflectionIT.Mvc.Paging {
 
@@ -67,7 +67,12 @@ namespace ReflectionIT.Mvc.Paging {
                                                  new RouteValueDictionary(this.RouteValue);
 
             if (sortExpression == this.SortExpression) {
-                sortExpression = "-" + sortExpression;
+                if (this.SortExpression.StartsWith("-")) {
+                    sortExpression = sortExpression.Substring(1);
+                }
+                else {
+                    sortExpression = "-" + sortExpression;
+                }
             }
 
             dict[this.SortExpressionParameterName] = sortExpression;
