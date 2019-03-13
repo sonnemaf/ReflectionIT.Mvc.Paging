@@ -76,5 +76,23 @@ namespace ReflectionIT.Mvc.Paging {
                                      pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
 
+        /// <summary>
+        /// Create a paging list based in a LINQ to Object query
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="orderedQuery">LINQ to Object ordered query</param>
+        /// <param name="pageSize">The size of the Page</param>
+        /// <param name="pageIndex">The index of the Page (1 based, not zero)</param>
+        /// <param name="totalRecordCount">Total Records</param>
+        /// <param name="sortExpression">Sort expression</param>
+        /// <param name="defaultSortExpression">Default sort expression</param>
+        /// <returns>The PagingListOfT</returns>
+        public static PagingList<T> Create<T>(IEnumerable<T> orderedQuery, int pageSize, int pageIndex, int totalRecordCount, string sortExpression, string defaultSortExpression) where T : class {
+            var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
+
+            return new PagingList<T>(orderedQuery.ToList(),
+                                     pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
+        }
+
     }
 }
