@@ -1,0 +1,63 @@
+@model PagingList<SampleApp.Models.Database.Products>
+
+@{
+    ViewData["Title"] = "Products";
+}
+
+<h1>Area Test Products</h1>
+
+<form method="get" class="form-inline">
+    <input name="filter" class="form-control" value="@Model.RouteValue["Filter"]" />&nbsp;
+    <button type="submit" class="btn btn-info">Search</button>
+</form>
+
+<p><a asp-action="Create">Create New</a></p>
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model"></vc:pager>
+</nav>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.SortableHeaderFor(model => model.ProductName, "-ProductName")
+        </th>
+        <th>
+            @Html.SortableHeaderFor(model => model.Supplier.CompanyName, "-Supplier.CompanyName, ProductName")
+        </th>
+        <th>
+            @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName, ProductName")
+        </th>
+        <th>
+            @Html.SortableHeaderFor(model => model.UnitPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitPrice)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ProductId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+<nav aria-label="Products navigation example">
+    <vc:pager paging-list="@Model" />
+</nav>
+

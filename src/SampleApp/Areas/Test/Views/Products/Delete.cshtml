@@ -1,0 +1,64 @@
+@model SampleApp.Models.Database.Products
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Products</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Discontinued)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Discontinued)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ProductName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ProductName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QuantityPerUnit)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.QuantityPerUnit)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ReorderLevel)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ReorderLevel)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitPrice)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnitPrice)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsInStock)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnitsInStock)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UnitsOnOrder)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UnitsOnOrder)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            <a asp-action="Index">Back to List</a>
+        </div>
+    </form>
+</div>
