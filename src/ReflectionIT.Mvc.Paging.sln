@@ -12,6 +12,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		instnwnd.sql = instnwnd.sql
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleWithIdentity", "SampleWithIdentity\SampleWithIdentity.csproj", "{86D9C2A0-54D9-48C2-B2CC-581DB08ACB7B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -26,6 +28,10 @@ Global
 		{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA03F641-2C4C-449E-9BDB-4AEE514DDB53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{86D9C2A0-54D9-48C2-B2CC-581DB08ACB7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{86D9C2A0-54D9-48C2-B2CC-581DB08ACB7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{86D9C2A0-54D9-48C2-B2CC-581DB08ACB7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{86D9C2A0-54D9-48C2-B2CC-581DB08ACB7B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

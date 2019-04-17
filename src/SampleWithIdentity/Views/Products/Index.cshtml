@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@model ReflectionIT.Mvc.Paging.PagingList<Product>
+
+@using ReflectionIT.Mvc.Paging
+@addTagHelper*,ReflectionIT.Mvc.Paging
+<link href="~/css/StyleSheet.css" rel="stylesheet" />
+<div class="bg">
+
+    <nav aria-label="Product Paging">
+        @await this.Component.InvokeAsync("Pager", new { pagingList = this.Model });
+    </nav>
+
+    <table class="table" style="background-color:snow">
+        <tr>
+
+            <th>
+                Id
+            </th>
+
+            <th>
+                Name
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr class="d-block">
+
+                <td>
+                    @item.Id
+                </td>
+                <td>
+                    @item.Name
+                </td>
+
+            </tr>
+            <tr></tr>
+        }
+
+
+    </table>
+
+    <nav aria-label="Product Paging">
+        <vc:pager paging-list=@Model />;
+    </nav>
+</div>

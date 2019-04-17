@@ -34,7 +34,7 @@ namespace ReflectionIT.Mvc.Paging {
             this.PageIndex = pageIndex;
             this.PageCount = pageCount;
             this.Action = "Index";
-            this.PageParameterName = "page";
+            this.PageParameterName = "pageIndex";
             this.SortExpressionParameterName = "sortExpression";
         }
 
