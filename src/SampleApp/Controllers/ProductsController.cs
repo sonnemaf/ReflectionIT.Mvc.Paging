@@ -41,7 +41,7 @@ namespace SampleApp.Controllers {
         //    return View(await qry.ToListAsync());
         //}
 
-        public async Task<IActionResult> Index(string filter, int page = 1, string sortExpression = "-ProductName") {
+        public async Task<IActionResult> Index(string filter, int pageindex = 1, string sort = "-ProductName") {
 
             var qry = _context.Products.AsNoTracking()
                 .Include(p => p.Category)
@@ -52,7 +52,7 @@ namespace SampleApp.Controllers {
                 qry = qry.Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
             }
 
-            var model = await PagingList.CreateAsync(qry, 10, page, sortExpression, "ProductName");
+            var model = await PagingList.CreateAsync(qry, 10, pageindex, sort, "ProductName");
 
             model.RouteValue = new RouteValueDictionary {
                 { "filter", filter}

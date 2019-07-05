@@ -23,7 +23,7 @@ namespace SampleApp {
             services.AddDbContext<NorthwindContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Northwind")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -32,6 +32,8 @@ namespace SampleApp {
             // Register ViewComponent using an EmbeddedFileProvider & setting some options
             services.AddPaging(options => {
                 options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+                options.SortExpressionParameterName = "sort";
                 options.HtmlIndicatorDown = " <span>&darr;</span>";
                 options.HtmlIndicatorUp = " <span>&uarr;</span>";
             });

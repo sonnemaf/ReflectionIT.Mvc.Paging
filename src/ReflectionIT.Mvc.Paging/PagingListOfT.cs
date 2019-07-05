@@ -34,8 +34,8 @@ namespace ReflectionIT.Mvc.Paging {
             this.PageIndex = pageIndex;
             this.PageCount = pageCount;
             this.Action = "Index";
-            this.PageParameterName = "page";
-            this.SortExpressionParameterName = "sortExpression";
+            this.PageParameterName = PagingOptions.Current.PageParameterName;
+            this.SortExpressionParameterName = PagingOptions.Current.SortExpressionParameterName;
         }
 
         internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression, int totalRecordCount)

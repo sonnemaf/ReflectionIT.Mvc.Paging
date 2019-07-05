@@ -32,11 +32,11 @@ namespace SampleApp.Controllers {
 
 
         // GET: Suppliers
-        public IActionResult Index(int page = 1) {
+        public IActionResult Index(int pageindex = 1) {
 
             var qry = _context.Suppliers.AsNoTracking().OrderBy(p => p.CompanyName);
 
-            var model = PagingList.Create(qry, 10, page);
+            var model = PagingList.Create(qry, 10, pageindex);
 
             return View(model);
         }

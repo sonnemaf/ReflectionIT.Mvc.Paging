@@ -19,15 +19,13 @@ namespace SampleApp.Controllers
                 }).ToList();
         }
 
-        public IActionResult Index(int pageNumber = 1, string sort = "Name") {
+        public IActionResult Index(int pageindex = 1, string sort = "Name") {
 
             var qry = from sd in _sampleData
                       where sd.Number > -5
                       select sd;
 
-            var model = PagingList.Create(qry, 10, pageNumber, sort, "Name");
-            model.PageParameterName = "pageNumber";
-            model.SortExpressionParameterName = "sort";
+            var model = PagingList.Create(qry, 10, pageindex, sort, "Name");
 
             return View(model);
         }
