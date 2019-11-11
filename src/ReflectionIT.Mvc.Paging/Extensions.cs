@@ -4,10 +4,8 @@ using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
+//using Microsoft.AspNetCore.Mvc.ViewFeatures.Internal;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
-using Microsoft.AspNetCore.Mvc.Razor;
 
 namespace ReflectionIT.Mvc.Paging {
 
@@ -21,7 +19,8 @@ namespace ReflectionIT.Mvc.Paging {
 
         [Obsolete("remove the pagingList parameter, it is not used any more")]
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, IPagingList pagingList) where TModel : class {
-            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression), pagingList);
+            var member = (expression.Body as MemberExpression).Member;
+            return SortableHeaderFor(html, expression, member.Name, pagingList);
         }
 
         [Obsolete("remove the pagingList parameter, it is not used any more")]
@@ -41,7 +40,8 @@ namespace ReflectionIT.Mvc.Paging {
         }
 
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
-            return SortableHeaderFor(html, expression, ExpressionHelper.GetExpressionText(expression));
+            var member = (expression.Body as MemberExpression).Member;
+            return SortableHeaderFor(html, expression, member.Name);
         }
 #pragma warning restore IDE0022 // Use expression body for methods
 

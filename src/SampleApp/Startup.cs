@@ -23,7 +23,7 @@ namespace SampleApp {
             services.AddDbContext<NorthwindContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("Northwind")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllersWithViews();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
@@ -43,9 +43,7 @@ namespace SampleApp {
         public void Configure(IApplicationBuilder app, IHostingEnvironment env) {
 
             if (env.IsDevelopment()) {
-                app.UseDatabaseErrorPage();
                 app.UseDeveloperExceptionPage();
-                //app.UseBrowserLink();
             } else {
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
@@ -55,17 +53,20 @@ namespace SampleApp {
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes => {
+            app.UseRouting();
 
-                routes.MapRoute(
-                    name: "areas",
-                    template: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                );
+            app.UseEndpoints(endpoints => {
 
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
+                       name: "areas",
+                       pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
+                   );
+
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }
