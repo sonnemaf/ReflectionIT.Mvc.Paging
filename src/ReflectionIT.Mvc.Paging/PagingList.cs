@@ -35,11 +35,14 @@ namespace ReflectionIT.Mvc.Paging {
         /// <param name="sortExpression">Sort expression</param>
         /// <param name="defaultSortExpression">Default sort expression</param>
         /// <returns>The PagingListOfT</returns>
-        public static async Task<PagingList<T>> CreateAsync<T>(IQueryable<T> qry, int pageSize, int pageIndex, string sortExpression, string defaultSortExpression) where T : class {
+        public static async Task<PagingList<T>> CreateAsync<T>(IQueryable<T> qry, int pageSize, int pageIndex, string sortExpression, string defaultSortExpression, bool isOrderAscending = true) where T : class {
             var totalRecordCount = await qry.CountAsync().ConfigureAwait(false);
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
-            return new PagingList<T>(await Extensions.OrderBy(qry, sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false),
+            if(isOrderAscending)
+                return new PagingList<T>(await Extensions.OrderBy(qry, sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false),
+                                     pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
+            return new PagingList<T>(qry.OrderByDescending(sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(),
                                      pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
 
@@ -68,11 +71,14 @@ namespace ReflectionIT.Mvc.Paging {
         /// <param name="sortExpression">Sort expression</param>
         /// <param name="defaultSortExpression">Default sort expression</param>
         /// <returns>The PagingListOfT</returns>
-        public static PagingList<T> Create<T>(IEnumerable<T> qry, int pageSize, int pageIndex, string sortExpression, string defaultSortExpression) where T : class {
+        public static PagingList<T> Create<T>(IEnumerable<T> qry, int pageSize, int pageIndex, string sortExpression, string defaultSortExpression, bool isOrderAscending = true) where T : class {
             var totalRecordCount = qry.Count();
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
-            return new PagingList<T>(qry.OrderBy(sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(),
+            if(isAscening)
+                return new PagingList<T>(qry.OrderBy(sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(),
+                                     pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
+            return new PagingList<T>(qry.OrderByDescending(sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(),
                                      pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
 
