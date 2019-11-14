@@ -28,7 +28,7 @@ namespace ReflectionIT.Mvc.Paging {
             return PagingList.CreateAsync(qry, pageSize, pageIndex, sortExpression, defaultSortExpression);
         }
 
-        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, int totalRecordCount)
+        internal PagingList(List<T> list, int pageIndex, int pageCount, int totalRecordCount)
             : base(list) {
             this.TotalRecordCount = totalRecordCount;
             this.PageIndex = pageIndex;
@@ -38,8 +38,8 @@ namespace ReflectionIT.Mvc.Paging {
             this.SortExpressionParameterName = PagingOptions.Current.SortExpressionParameterName;
         }
 
-        internal PagingList(List<T> list, int pageSize, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression, int totalRecordCount)
-            : this(list, pageSize, pageIndex, pageCount, totalRecordCount) {
+        internal PagingList(List<T> list, int pageIndex, int pageCount, string sortExpression, string defaultSortExpression, int totalRecordCount)
+            : this(list, pageIndex, pageCount, totalRecordCount) {
 
             this.SortExpression = sortExpression;
             this.DefaultSortExpression = defaultSortExpression;
@@ -67,12 +67,7 @@ namespace ReflectionIT.Mvc.Paging {
                                                  new RouteValueDictionary(this.RouteValue);
 
             if (sortExpression == this.SortExpression) {
-                if (this.SortExpression.StartsWith("-")) {
-                    sortExpression = sortExpression.Substring(1);
-                }
-                else {
-                    sortExpression = "-" + sortExpression;
-                }
+                sortExpression = this.SortExpression.StartsWith("-") ? sortExpression.Substring(1) : "-" + sortExpression;
             }
 
             dict[this.SortExpressionParameterName] = sortExpression;

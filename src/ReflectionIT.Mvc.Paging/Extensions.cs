@@ -112,8 +112,10 @@ namespace ReflectionIT.Mvc.Paging {
             //});
         }
 
+#pragma warning disable IDE0060 // Remove unused parameter
         public static void AddPaging(this IServiceCollection services, Action<PagingOptions> configureOptions) {
-            //AddPaging(services);
+#pragma warning restore IDE0060 // Remove unused parameter
+                               //AddPaging(services);
             configureOptions(PagingOptions.Current);
         }
 

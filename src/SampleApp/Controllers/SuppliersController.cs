@@ -22,12 +22,10 @@ namespace SampleApp.Controllers {
         [AcceptVerbs("Get", "Post")]
         public JsonResult IsCompanyNameAvailable(int? supplierId, string companyName) {
 
-            if (!_context.Suppliers.Any(sup => (!supplierId.HasValue || sup.SupplierId != supplierId)
-                                            && sup.CompanyName == companyName)) {
-                return Json(true);
-            }
-
-            return Json($"{companyName} is already used");
+            return !_context.Suppliers.Any(sup => (!supplierId.HasValue || sup.SupplierId != supplierId)
+                                            && sup.CompanyName == companyName)
+                ? Json(true)
+                : Json($"{companyName} is already used");
         }
 
 
@@ -50,11 +48,7 @@ namespace SampleApp.Controllers {
             }
 
             var suppliers = await _context.Suppliers.SingleOrDefaultAsync(m => m.SupplierId == id);
-            if (suppliers == null) {
-                return NotFound();
-            }
-
-            return View(suppliers);
+            return suppliers == null ? NotFound() : (IActionResult)View(suppliers);
         }
 
         // GET: Suppliers/Create
@@ -83,10 +77,7 @@ namespace SampleApp.Controllers {
             }
 
             var suppliers = await _context.Suppliers.SingleOrDefaultAsync(m => m.SupplierId == id);
-            if (suppliers == null) {
-                return NotFound();
-            }
-            return View(suppliers);
+            return suppliers == null ? NotFound() : (IActionResult)View(suppliers);
         }
 
         // POST: Suppliers/Edit/5
@@ -122,11 +113,7 @@ namespace SampleApp.Controllers {
             }
 
             var suppliers = await _context.Suppliers.SingleOrDefaultAsync(m => m.SupplierId == id);
-            if (suppliers == null) {
-                return NotFound();
-            }
-
-            return View(suppliers);
+            return suppliers == null ? NotFound() : (IActionResult)View(suppliers);
         }
 
         // POST: Suppliers/Delete/5

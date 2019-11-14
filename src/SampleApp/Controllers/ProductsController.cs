@@ -79,11 +79,7 @@ namespace SampleApp.Controllers {
             }
 
             var products = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
-            if (products == null) {
-                return NotFound();
-            }
-
-            return View(products);
+            return products == null ? NotFound() : (IActionResult)View(products);
         }
 
         // GET: Products/Create
@@ -169,11 +165,7 @@ namespace SampleApp.Controllers {
             }
 
             var products = await _context.Products.SingleOrDefaultAsync(m => m.ProductId == id);
-            if (products == null) {
-                return NotFound();
-            }
-
-            return View(products);
+            return products == null ? NotFound() : (IActionResult)View(products);
         }
 
         // POST: Products/Delete/5
@@ -186,9 +178,6 @@ namespace SampleApp.Controllers {
             return RedirectToAction("Index");
         }
 
-        private bool ProductsExists(int id) {
-            return _context.Products.Any(e => e.ProductId == id);
-        }
     }
 #pragma warning restore RIT0002 // Async method should be named with an Async suffix
 }

@@ -22,7 +22,7 @@ namespace ReflectionIT.Mvc.Paging {
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
             return new PagingList<T>(await qry.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false),
-                                        pageSize, pageIndex, pageCount, totalRecordCount);
+                pageIndex, pageCount, totalRecordCount);
         }
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace ReflectionIT.Mvc.Paging {
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
             return new PagingList<T>(await Extensions.OrderBy(qry, sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false),
-                                     pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
+                pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace ReflectionIT.Mvc.Paging {
             var totalRecordCount = qry.Count();
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
-            return new PagingList<T>(qry.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(), pageSize, pageIndex, pageCount, totalRecordCount);
+            return new PagingList<T>(qry.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(), pageIndex, pageCount, totalRecordCount);
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace ReflectionIT.Mvc.Paging {
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
             return new PagingList<T>(qry.OrderBy(sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(),
-                                     pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
+                pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
 
         /// <summary>
@@ -91,7 +91,7 @@ namespace ReflectionIT.Mvc.Paging {
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
             return new PagingList<T>(orderedQuery.ToList(),
-                                     pageSize, pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
+                pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
 
     }
