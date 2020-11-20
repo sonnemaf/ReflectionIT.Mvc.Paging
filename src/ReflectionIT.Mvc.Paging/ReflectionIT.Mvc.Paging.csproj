@@ -16,10 +16,10 @@
     <PackageLicenseUrl></PackageLicenseUrl>
     <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
     <PackageTags>ASPNETCore MVC EntityFrameworkCore Paging</PackageTags>
-    <PackageReleaseNotes>Upgraded to ASP.NET Core 5.0 and EF Core 5.0</PackageReleaseNotes>
-    <Version>5.0.0.0</Version>
-    <AssemblyVersion>5.0.0.0</AssemblyVersion>
-    <FileVersion>5.0.0.0</FileVersion>
+    <PackageReleaseNotes>Extra overloads for SortableHeaderFor() with ViewModel and htmlAttributes support.</PackageReleaseNotes>
+    <Version>5.0.1.0</Version>
+    <AssemblyVersion>5.0.1.0</AssemblyVersion>
+    <FileVersion>5.0.1.0</FileVersion>
 
     <PublishRepositoryUrl>true</PublishRepositoryUrl>
     <EmbedUntrackedSources>true</EmbedUntrackedSources>

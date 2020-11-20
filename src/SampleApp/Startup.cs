@@ -31,13 +31,13 @@ namespace SampleApp {
             services.AddTransient<ISmsSender, AuthMessageSender>();
 
             // Register ViewComponent using an EmbeddedFileProvider & setting some options
-services.AddPaging(options => {
-    options.ViewName = "Bootstrap4";
-    options.PageParameterName = "pageindex";
-    options.SortExpressionParameterName = "sort";
-    options.HtmlIndicatorDown = " <span>&darr;</span>";
-    options.HtmlIndicatorUp = " <span>&uarr;</span>";
-});
+            services.AddPaging(options => {
+                options.ViewName = "Bootstrap4";
+                options.PageParameterName = "pageindex";
+                options.SortExpressionParameterName = "sort";
+                options.HtmlIndicatorDown = " <span>&darr;</span>";
+                options.HtmlIndicatorUp = " <span>&uarr;</span>";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

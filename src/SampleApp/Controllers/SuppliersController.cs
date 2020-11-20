@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 using SampleApp.Models.Database;
+using SampleApp.ViewModels;
 
 namespace SampleApp.Controllers {
 #pragma warning disable RIT0002 // Async method should be named with an Async suffix
@@ -30,11 +31,14 @@ namespace SampleApp.Controllers {
 
 
         // GET: Suppliers
-        public IActionResult Index(int pageindex = 1) {
+        public async Task<IActionResult> Index(int pageindex = 1, string sort = "CompanyName") {
 
-            var qry = _context.Suppliers.AsNoTracking().OrderBy(p => p.CompanyName);
+            var qry = _context.Suppliers.AsNoTracking();
 
-            var model = PagingList.Create(qry, 10, pageindex);
+            var model = new SuppliersIndexViewModel {
+                Title = "Suppliers",
+                Suppliers = await PagingList.CreateAsync(qry, 10, pageindex, sort, nameof(Suppliers.CompanyName)),
+            };
 
             return View(model);
         }

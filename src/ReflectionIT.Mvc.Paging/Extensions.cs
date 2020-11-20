@@ -28,6 +28,32 @@ namespace ReflectionIT.Mvc.Paging {
             return SortableHeaderFor(html, expression, sortColumn);
         }
 
+        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, string sortColumn, object htmlAttributes) where TModel : class {
+            var pagingList = modelSelector(html.ViewData.Model);
+            var bldr = new HtmlContentBuilder();
+
+            bldr.AppendHtml(html.ActionLink(html.DisplayNameForInnerType(expression), pagingList.Action, pagingList.GetRouteValueForSort(sortColumn), htmlAttributes));
+
+            if (pagingList.SortExpression == sortColumn || "-" + pagingList.SortExpression == sortColumn || pagingList.SortExpression == "-" + sortColumn) {
+                bldr.AppendHtml(pagingList.SortExpression.StartsWith("-") ? PagingOptions.Current.HtmlIndicatorUp : PagingOptions.Current.HtmlIndicatorDown);
+            }
+            return bldr;
+        }
+
+        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, string sortColumn) where TModel : class {
+            return SortableHeaderFor(html, modelSelector, expression, sortColumn, null);
+        }
+
+        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression) where TModel : class {
+            var member = (expression.Body as MemberExpression).Member;
+            return SortableHeaderFor(html, modelSelector, expression, member.Name);
+        }
+
+        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, object htmlAttributes) where TModel : class {
+            var member = (expression.Body as MemberExpression).Member;
+            return SortableHeaderFor(html, modelSelector, expression, member.Name, htmlAttributes);
+        }
+
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn) where TModel : class {
             var bldr = new HtmlContentBuilder();
             bldr.AppendHtml(html.ActionLink(html.DisplayNameForInnerType(expression), html.ViewData.Model.Action, html.ViewData.Model.GetRouteValueForSort(sortColumn)));
@@ -39,9 +65,18 @@ namespace ReflectionIT.Mvc.Paging {
             return bldr;
         }
 
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, string sortColumn, object htmlAttributes) where TModel : class {
+            return SortableHeaderFor(html, expression, sortColumn, htmlAttributes: null);
+        }
+
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
             var member = (expression.Body as MemberExpression).Member;
             return SortableHeaderFor(html, expression, member.Name);
+        }
+
+        public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, object htmlAttributes) where TModel : class {
+            var member = (expression.Body as MemberExpression).Member;
+            return SortableHeaderFor(html, expression, member.Name, htmlAttributes);
         }
 #pragma warning restore IDE0022 // Use expression body for methods
 

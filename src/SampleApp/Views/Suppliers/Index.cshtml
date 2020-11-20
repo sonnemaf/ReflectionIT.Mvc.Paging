@@ -1,10 +1,11 @@
-@model ReflectionIT.Mvc.Paging.PagingList<SampleApp.Models.Database.Suppliers>
+@using SampleApp.ViewModels
+@model SuppliersIndexViewModel
 
 @{
-    ViewData["Title"] = "Suppliers";
+    ViewData["Title"] = this.Model.Title;
 }
 
-<h1>Suppliers</h1>
+<h1>@this.Model.Title</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -14,30 +15,32 @@
     @*@await Component.InvokeAsync("Pager", new { pagingList = this.Model })*@
     @*<vc:pager paging-list="this.Model" />
     <vc:test-thing />*@
-    <partial name="PagerBootstrap4" model="@this.Model" />
+    <partial name="PagerBootstrap4" model="@this.Model.Suppliers" />
     @*<pager model="Model" />*@
 </nav>
+
+@{var headerMetadata = Model.Suppliers.FirstOrDefault();}
 
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.CompanyName)
+                @Html.SortableHeaderFor(viewModel => viewModel.Suppliers, model => model.CompanyName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContactName)
+                @Html.SortableHeaderFor(viewModel => viewModel.Suppliers, model => model.ContactName)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ContactTitle)
+                @Html.SortableHeaderFor(viewModel => viewModel.Suppliers, model => model.ContactTitle)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Country)
+                @Html.SortableHeaderFor(viewModel => viewModel.Suppliers, model => model.Country)
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model) {
+        @foreach (var item in Model.Suppliers) {
             <tr>
                 <td>
                     @Html.DisplayFor(modelItem => item.CompanyName)
@@ -62,6 +65,6 @@
 </table>
 
 <nav aria-label="Suppliers navigation example">
-    <partial name="SmallRightPager" model="@this.Model" />
+    <partial name="SmallRightPager" model="@this.Model.Suppliers" />
 </nav>
 
