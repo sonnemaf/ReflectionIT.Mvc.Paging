@@ -16,7 +16,7 @@ namespace ReflectionIT.Mvc.Paging {
         public string HtmlIndicatorUp { get; set; } = " <span class=\"glyphicon glyphicon glyphicon-chevron-up\" aria-hidden=\"true\"></span>";
         public string HtmlIndicatorDown { get; set; } = " <span class=\"glyphicon glyphicon glyphicon-chevron-down\" aria-hidden=\"true\"></span>";
         public int DefaultNumberOfPagesToShow { get; set; } = 5;
-        public string PageParameterName { get; set; } = "page";
+        public string PageParameterName { get; set; } = "pageIndex";
         public string SortExpressionParameterName { get; set; } = "sortExpression";
 
     }
