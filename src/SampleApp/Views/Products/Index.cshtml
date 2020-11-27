@@ -26,10 +26,10 @@
             @Html.SortableHeaderFor(model => model.Supplier.CompanyName, "-Supplier.CompanyName, ProductName")
         </th>
         <th>
-            @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName, ProductName")
+            @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName, ProductName", htmlAttributes:new { Test = 1 })
         </th>
         <th>
-            @Html.SortableHeaderFor(model => model.UnitPrice)
+            @Html.SortableHeaderFor(model => model.UnitPrice, htmlAttributes:new { Test = 1 })
         </th>
         <th></th>
     </tr>

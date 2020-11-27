@@ -25,7 +25,7 @@
     <thead>
         <tr>
             <th>
-                @Html.SortableHeaderFor(viewModel => viewModel.Suppliers, model => model.CompanyName)
+                @Html.SortableHeaderFor(viewModel => viewModel.Suppliers, model => model.CompanyName, htmlAttributes: new { Test = 1 })
             </th>
             <th>
                 @Html.SortableHeaderFor(viewModel => viewModel.Suppliers, model => model.ContactName)
