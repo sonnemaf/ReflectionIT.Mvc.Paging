@@ -27,7 +27,7 @@ namespace SampleApp.Models.Database {
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Categories>(entity => {
                 entity.HasIndex(e => e.CategoryName)
-                    .HasName("CategoryName");
+                    .HasDatabaseName("CategoryName");
             });
 
             modelBuilder.Entity<CustomerCustomerDemo>(entity => {
@@ -37,16 +37,16 @@ namespace SampleApp.Models.Database {
 
             modelBuilder.Entity<Customers>(entity => {
                 entity.HasIndex(e => e.City)
-                    .HasName("City");
+                    .HasDatabaseName("City");
 
                 entity.HasIndex(e => e.CompanyName)
-                    .HasName("CompanyName");
+                    .HasDatabaseName("CompanyName");
 
                 entity.HasIndex(e => e.PostalCode)
-                    .HasName("PostalCode");
+                    .HasDatabaseName("PostalCode");
 
                 entity.HasIndex(e => e.Region)
-                    .HasName("Region");
+                    .HasDatabaseName("Region");
             });
 
             modelBuilder.Entity<EmployeeTerritories>(entity => {
@@ -56,10 +56,10 @@ namespace SampleApp.Models.Database {
 
             modelBuilder.Entity<Employees>(entity => {
                 entity.HasIndex(e => e.LastName)
-                    .HasName("LastName");
+                    .HasDatabaseName("LastName");
 
                 entity.HasIndex(e => e.PostalCode)
-                    .HasName("PostalCode");
+                    .HasDatabaseName("PostalCode");
             });
 
             modelBuilder.Entity<OrderDetails>(entity => {
@@ -67,10 +67,10 @@ namespace SampleApp.Models.Database {
                     .HasName("PK_Order_Details");
 
                 entity.HasIndex(e => e.OrderId)
-                    .HasName("OrdersOrder_Details");
+                    .HasDatabaseName("OrdersOrder_Details");
 
                 entity.HasIndex(e => e.ProductId)
-                    .HasName("ProductsOrder_Details");
+                    .HasDatabaseName("ProductsOrder_Details");
 
                 entity.Property(e => e.Discount).HasDefaultValueSql("0");
 
@@ -81,36 +81,36 @@ namespace SampleApp.Models.Database {
 
             modelBuilder.Entity<Orders>(entity => {
                 entity.HasIndex(e => e.CustomerId)
-                    .HasName("CustomersOrders");
+                    .HasDatabaseName("CustomersOrders");
 
                 entity.HasIndex(e => e.EmployeeId)
-                    .HasName("EmployeesOrders");
+                    .HasDatabaseName("EmployeesOrders");
 
                 entity.HasIndex(e => e.OrderDate)
-                    .HasName("OrderDate");
+                    .HasDatabaseName("OrderDate");
 
                 entity.HasIndex(e => e.ShipPostalCode)
-                    .HasName("ShipPostalCode");
+                    .HasDatabaseName("ShipPostalCode");
 
                 entity.HasIndex(e => e.ShipVia)
-                    .HasName("ShippersOrders");
+                    .HasDatabaseName("ShippersOrders");
 
                 entity.HasIndex(e => e.ShippedDate)
-                    .HasName("ShippedDate");
+                    .HasDatabaseName("ShippedDate");
 
                 entity.Property(e => e.Freight).HasDefaultValueSql("0");
             });
 
             modelBuilder.Entity<Products>(entity => {
                 entity.HasIndex(e => e.CategoryId)
-                    .HasName("CategoryID");
+                    .HasDatabaseName("CategoryID");
 
                 entity.HasIndex(e => e.ProductName)
-                    .HasName("ProductName")
+                    .HasDatabaseName("ProductName")
                     .IsUnique();
 
                 entity.HasIndex(e => e.SupplierId)
-                    .HasName("SuppliersProducts");
+                    .HasDatabaseName("SuppliersProducts");
 
                 entity.Property(e => e.Discontinued).HasDefaultValueSql("0");
 
@@ -129,10 +129,10 @@ namespace SampleApp.Models.Database {
 
             modelBuilder.Entity<Suppliers>(entity => {
                 entity.HasIndex(e => e.CompanyName)
-                    .HasName("CompanyName");
+                    .HasDatabaseName("CompanyName");
 
                 entity.HasIndex(e => e.PostalCode)
-                    .HasName("PostalCode");
+                    .HasDatabaseName("PostalCode");
             });
         }
 

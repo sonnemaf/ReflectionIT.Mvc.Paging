@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
@@ -28,7 +29,7 @@ namespace ReflectionIT.Mvc.Paging {
             return SortableHeaderFor(html, expression, sortColumn);
         }
 
-        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, string sortColumn, object htmlAttributes) where TModel : class {
+        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel,  PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, string sortColumn, object htmlAttributes) where TModel : class {
             var pagingList = modelSelector(html.ViewData.Model);
             var bldr = new HtmlContentBuilder();
 
@@ -152,6 +153,11 @@ namespace ReflectionIT.Mvc.Paging {
 #pragma warning restore IDE0060 // Remove unused parameter
                                //AddPaging(services);
             configureOptions(PagingOptions.Current);
+        }
+
+        public static Dictionary<string, string> GetRouteData(this IPagingList pl, int pageIndex, params string[] excludes) {
+            var dict = pl.GetRouteValueForPage(pageIndex);
+            return dict.Where(kvp => kvp.Value is object && !excludes.Contains(kvp.Key)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
         }
 
     }

@@ -13,13 +13,15 @@
 
 <nav aria-label="Suppliers navigation example">
     @*@await Component.InvokeAsync("Pager", new { pagingList = this.Model })*@
-    @*<vc:pager paging-list="this.Model" />
-    <vc:test-thing />*@
-    <partial name="PagerBootstrap4" model="@this.Model.Suppliers" />
-    @*<pager model="Model" />*@
+    @*<vc:pager-with-named-view paging-list="@Model.Suppliers" view-name="Bootstrap5" />*@
+
+    <vc:pager paging-list="@Model.Suppliers" />
+
+    @*<partial name="SmallRightPager" model="Model.Suppliers" />*@
 </nav>
 
-@{var headerMetadata = Model.Suppliers.FirstOrDefault();}
+@{
+    var headerMetadata = Model.Suppliers.FirstOrDefault();}
 
 <table class="table">
     <thead>
@@ -40,31 +42,32 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var item in Model.Suppliers) {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.CompanyName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContactName)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.ContactTitle)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Country)
-                </td>
-                <td>
-                    <a asp-action="Edit" asp-route-id="@item.SupplierId">Edit</a> |
-                    <a asp-action="Details" asp-route-id="@item.SupplierId">Details</a> |
-                    <a asp-action="Delete" asp-route-id="@item.SupplierId">Delete</a>
-                </td>
-            </tr>
+        @foreach (var item in Model.Suppliers)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CompanyName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Country)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SupplierId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SupplierId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SupplierId">Delete</a>
+            </td>
+        </tr>
         }
     </tbody>
 </table>
 
 <nav aria-label="Suppliers navigation example">
-    <partial name="SmallRightPager" model="@this.Model.Suppliers" />
+    <vc:pager-with-named-view paging-list="Model.Suppliers" view-name="Bootstrap5" />
 </nav>
 

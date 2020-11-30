@@ -61,6 +61,19 @@ namespace ReflectionIT.Mvc.Paging {
             return dict;
         }
 
+        public Dictionary<string, string> GetRouteDataForPage(int pageIndex) {
+            var dict = this.RouteValue == null ? new RouteValueDictionary() :
+                                                 new RouteValueDictionary(this.RouteValue);
+
+            dict[this.PageParameterName] = pageIndex;
+
+            if (this.SortExpression != this.DefaultSortExpression) {
+                dict[this.SortExpressionParameterName] = this.SortExpression;
+            }
+
+            return dict.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
+        }
+
         public RouteValueDictionary GetRouteValueForSort(string sortExpression) {
 
             var dict = this.RouteValue == null ? new RouteValueDictionary() :

@@ -5,6 +5,7 @@ namespace ReflectionIT.Mvc.Paging {
     public interface IPagingList {
         string Action { get; set; }
         RouteValueDictionary GetRouteValueForPage(int pageIndex);
+        RouteValueDictionary GetRouteValueForSort(string sortExpression);
         int PageCount { get; }
         int PageIndex { get; }
         int TotalRecordCount { get; }

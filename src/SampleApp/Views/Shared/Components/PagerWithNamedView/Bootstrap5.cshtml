@@ -1,11 +1,12 @@
 ﻿@model  ReflectionIT.Mvc.Paging.IPagingList
 
-@* Fake Boostrap 5 based pager *@
+<h2>Fake Boostrap 5 based pager</h2>
 
 @{
     var start = this.Model.StartPageIndex;
     var stop = this.Model.StopPageIndex;
 }
+
 
 @if (this.Model.PageCount > 1) {
     <ul class="pagination pagination-sm justify-content-end">

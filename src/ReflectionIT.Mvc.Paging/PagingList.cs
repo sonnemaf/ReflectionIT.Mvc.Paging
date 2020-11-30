@@ -20,6 +20,8 @@ namespace ReflectionIT.Mvc.Paging {
         public static async Task<PagingList<T>> CreateAsync<T>(IOrderedQueryable<T> qry, int pageSize, int pageIndex) where T : class {
             var totalRecordCount = await qry.CountAsync().ConfigureAwait(false);
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
+            
+            pageIndex = Math.Min(pageIndex, pageCount);
 
             return new PagingList<T>(await qry.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false),
                 pageIndex, pageCount, totalRecordCount);
@@ -39,6 +41,8 @@ namespace ReflectionIT.Mvc.Paging {
             var totalRecordCount = await qry.CountAsync().ConfigureAwait(false);
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
+            pageIndex = Math.Min(pageIndex, pageCount);
+
             return new PagingList<T>(await Extensions.OrderBy(qry, sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToListAsync().ConfigureAwait(false),
                 pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
@@ -54,6 +58,8 @@ namespace ReflectionIT.Mvc.Paging {
         public static PagingList<T> Create<T>(IEnumerable<T> qry, int pageSize, int pageIndex) where T : class {
             var totalRecordCount = qry.Count();
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
+
+            pageIndex = Math.Min(pageIndex, pageCount);
 
             return new PagingList<T>(qry.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(), pageIndex, pageCount, totalRecordCount);
         }
@@ -72,6 +78,8 @@ namespace ReflectionIT.Mvc.Paging {
             var totalRecordCount = qry.Count();
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
 
+            pageIndex = Math.Min(pageIndex, pageCount);
+
             return new PagingList<T>(qry.OrderBy(sortExpression).Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList(),
                 pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
         }
@@ -89,6 +97,8 @@ namespace ReflectionIT.Mvc.Paging {
         /// <returns>The PagingListOfT</returns>
         public static PagingList<T> Create<T>(IEnumerable<T> orderedQuery, int pageSize, int pageIndex, int totalRecordCount, string sortExpression, string defaultSortExpression) where T : class {
             var pageCount = (int)Math.Ceiling(totalRecordCount / (double)pageSize);
+            
+            pageIndex = Math.Min(pageIndex, pageCount);
 
             return new PagingList<T>(orderedQuery.ToList(),
                 pageIndex, pageCount, sortExpression, defaultSortExpression, totalRecordCount);
