@@ -9,7 +9,7 @@ namespace ReflectionIT.Mvc.Paging {
         int PageCount { get; }
         int PageIndex { get; }
         int TotalRecordCount { get; }
-        RouteValueDictionary RouteValue { get; set; }
+        RouteValueDictionary? RouteValue { get; set; }
         string SortExpression { get; }
 
         int NumberOfPagesToShow { get; set; }

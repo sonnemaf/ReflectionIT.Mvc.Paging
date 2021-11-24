@@ -14,9 +14,11 @@ namespace ReflectionIT.Mvc.Paging {
         public string Action { get; set; }
         public string PageParameterName { get; set; }
         public string SortExpressionParameterName { get; set; }
-        public string SortExpression { get; }
+        public string SortExpression { get; } = String.Empty;
 
-        public string DefaultSortExpression { get; }
+        public RouteValueDictionary? RouteValue { get; set; }
+
+        public string DefaultSortExpression { get; } = String.Empty;
 
         [Obsolete("Use PagingList.CreateAsync<T>() instead")]
         public static Task<PagingList<T>> CreateAsync(IOrderedQueryable<T> qry, int pageSize, int pageIndex) {
@@ -45,7 +47,6 @@ namespace ReflectionIT.Mvc.Paging {
             this.DefaultSortExpression = defaultSortExpression;
         }
 
-        public RouteValueDictionary RouteValue { get; set; }
 
         public RouteValueDictionary GetRouteValueForPage(int pageIndex) {
 
@@ -61,7 +62,7 @@ namespace ReflectionIT.Mvc.Paging {
             return dict;
         }
 
-        public Dictionary<string, string> GetRouteDataForPage(int pageIndex) {
+        public Dictionary<string, string?> GetRouteDataForPage(int pageIndex) {
             var dict = this.RouteValue == null ? new RouteValueDictionary() :
                                                  new RouteValueDictionary(this.RouteValue);
 
@@ -71,7 +72,7 @@ namespace ReflectionIT.Mvc.Paging {
                 dict[this.SortExpressionParameterName] = this.SortExpression;
             }
 
-            return dict.ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
+            return dict.ToDictionary(kvp => kvp.Key, kvp => kvp.Value?.ToString());
         }
 
         public RouteValueDictionary GetRouteValueForSort(string sortExpression) {

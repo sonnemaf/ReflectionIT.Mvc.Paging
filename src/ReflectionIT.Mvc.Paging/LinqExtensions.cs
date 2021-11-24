@@ -3,15 +3,15 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ReflectionIT.Mvc.Paging {
     internal static class LinqExtensions {
         private static PropertyInfo GetPropertyInfo(Type objType, string name) {
             var properties = objType.GetProperties();
             var matchedProperty = properties.FirstOrDefault(p => p.Name == name);
-            if (matchedProperty == null) {
-                throw new ArgumentException("name");
-            }
+
+            ArgumentNullException.ThrowIfNull(matchedProperty);
 
             return matchedProperty;
         }
@@ -22,7 +22,9 @@ namespace ReflectionIT.Mvc.Paging {
             return expr;
         }
 
-        public static IEnumerable<T> OrderBy<T>(this IEnumerable<T> query, string name) {
+        public static IEnumerable<T> OrderBy<T>([NotNull] this IEnumerable<T>? query, string name) {
+            ArgumentNullException.ThrowIfNull(query);
+
             var index = 0;
             var a = name.Split(',');
             foreach (var item in a) {
@@ -38,8 +40,10 @@ namespace ReflectionIT.Mvc.Paging {
                 var propInfo = GetPropertyInfo(typeof(T), name);
                 var expr = GetOrderExpression(typeof(T), propInfo);
                 var method = typeof(Enumerable).GetMethods().FirstOrDefault(mt => mt.Name == m && mt.GetParameters().Length == 2);
-                var genericMethod = method.MakeGenericMethod(typeof(T), propInfo.PropertyType);
-                query = (IEnumerable<T>)genericMethod.Invoke(null, new object[] { query, expr.Compile() });
+                if (method is not null) {
+                    var genericMethod = method.MakeGenericMethod(typeof(T), propInfo.PropertyType);
+                    query = (IEnumerable<T>)genericMethod.Invoke(null, new object[] { query, expr.Compile() });
+                }
             }
             return query;
         }

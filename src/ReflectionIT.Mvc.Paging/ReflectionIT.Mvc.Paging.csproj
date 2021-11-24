@@ -1,54 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
-  <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
-    <Company>Reflection IT</Company>
-    <Authors>Fons Sonnemans</Authors>
-    <Copyright>Reflection IT</Copyright>
-    <AssemblyTitle>ReflectionIT.Mvc.Paging</AssemblyTitle>
-    <AssemblyName>ReflectionIT.Mvc.Paging</AssemblyName>
-    <PackageId>ReflectionIT.Mvc.Paging</PackageId>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <Title>ReflectionIT.Mvc.Paging</Title>
-    <Description>ASP.NET Core 5.0 Library to support Paging (including sorting and filtering) for Entity Framework Core 3.0 and IEnumerableOfT datasources</Description>
-    <PackageLicenseUrl></PackageLicenseUrl>
-    <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
-    <PackageTags>ASPNETCore MVC EntityFrameworkCore Paging</PackageTags>
-    <PackageReleaseNotes>PagerWithNamedViewComponent added
-GetRouteData() extension method added
-Automatic set PageIndex to PageCount if the value is greater than the PageCount</PackageReleaseNotes>
-    <Version>5.1.1.0</Version>
-    <AssemblyVersion>5.1.1.0</AssemblyVersion>
-    <FileVersion>5.1.1.0</FileVersion>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<Company>Reflection IT</Company>
+		<Authors>Fons Sonnemans</Authors>
+		<Copyright>Reflection IT</Copyright>
+		<AssemblyTitle>ReflectionIT.Mvc.Paging</AssemblyTitle>
+		<AssemblyName>ReflectionIT.Mvc.Paging</AssemblyName>
+		<PackageId>ReflectionIT.Mvc.Paging</PackageId>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<Title>ReflectionIT.Mvc.Paging</Title>
+		<Description>ASP.NET Core 6.0 Library to support Paging (including sorting and filtering) for Entity Framework Core 3.0 and IEnumerableOfT datasources</Description>
+		<PackageLicenseUrl></PackageLicenseUrl>
+		<PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
+		<PackageTags>ASPNETCore MVC EntityFrameworkCore Paging</PackageTags>
+		<PackageReleaseNotes>
+			.NET 6 release
+		</PackageReleaseNotes>
+		<Version>6.0.0.0</Version>
+		<AssemblyVersion>$(Version)</AssemblyVersion>
+		<FileVersion>$(Version)</FileVersion>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<SignAssembly>true</SignAssembly>
+		<AssemblyOriginatorKeyFile>ReflectionIT.Mvc.Paging.snk</AssemblyOriginatorKeyFile>
+		<PackageLicenseExpression></PackageLicenseExpression>
+		<PackageLicenseFile>License..txt</PackageLicenseFile>
+		<RazorCompileOnBuild>true</RazorCompileOnBuild>
+		<RazorCompileOnPublish>true</RazorCompileOnPublish>
+		<AddRazorSupportForMvc>true</AddRazorSupportForMvc>
+	</PropertyGroup>
 
-    <PublishRepositoryUrl>true</PublishRepositoryUrl>
-    <EmbedUntrackedSources>true</EmbedUntrackedSources>
-    <AllowedOutputExtensionsInPackageBuildOutputFolder>$(AllowedOutputExtensionsInPackageBuildOutputFolder);.pdb</AllowedOutputExtensionsInPackageBuildOutputFolder>
-    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <SignAssembly>true</SignAssembly>
-    <AssemblyOriginatorKeyFile>ReflectionIT.Mvc.Paging.snk</AssemblyOriginatorKeyFile>
-    <PackageLicenseExpression></PackageLicenseExpression>
-    <PackageLicenseFile>License..txt</PackageLicenseFile>
-    <RazorLangVersion>3.0</RazorLangVersion>
-    <RazorCompileOnBuild>true</RazorCompileOnBuild>
-    <RazorCompileOnPublish>true</RazorCompileOnPublish>
-    <AddRazorSupportForMvc>true</AddRazorSupportForMvc>
-  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.0.0" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.0" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.0" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.0" />
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="..\License..txt">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Include="..\License..txt">
+			<Pack>True</Pack>
+			<PackagePath></PackagePath>
+		</None>
+	</ItemGroup>
 
 </Project>
