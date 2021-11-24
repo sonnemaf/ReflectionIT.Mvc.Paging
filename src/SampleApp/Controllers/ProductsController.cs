@@ -11,7 +11,6 @@ using ReflectionIT.Mvc.Paging;
 using SampleApp.Models.Database;
 
 namespace SampleApp.Controllers {
-#pragma warning disable RIT0002 // Async method should be named with an Async suffix
 
     public class ProductsController : Controller {
         private readonly NorthwindContext _context;
@@ -179,5 +178,4 @@ namespace SampleApp.Controllers {
         }
 
     }
-#pragma warning restore RIT0002 // Async method should be named with an Async suffix
 }

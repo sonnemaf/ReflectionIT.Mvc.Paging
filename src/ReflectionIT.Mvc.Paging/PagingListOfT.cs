@@ -81,7 +81,7 @@ namespace ReflectionIT.Mvc.Paging {
                                                  new RouteValueDictionary(this.RouteValue);
 
             if (sortExpression == this.SortExpression) {
-                sortExpression = this.SortExpression.StartsWith("-") ? sortExpression.Substring(1) : "-" + sortExpression;
+                sortExpression = this.SortExpression.StartsWith("-") ? sortExpression[1..] : "-" + sortExpression;
             }
 
             dict[this.SortExpressionParameterName] = sortExpression;

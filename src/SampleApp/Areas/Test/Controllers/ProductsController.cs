@@ -12,56 +12,54 @@ using SampleApp.Models.Database;
 
 namespace SampleApp.Controllers.Areas.Test {
 
-#pragma warning disable RIT0002 // Async method should be named with an Async suffix
-
     [Area("Test")]
-public class ProductsController : Controller {
-    private readonly NorthwindContext _context;
+    public class ProductsController : Controller {
+        private readonly NorthwindContext _context;
 
-    public ProductsController(NorthwindContext context) {
-        _context = context;
-    }
-
-
-    //// GET: Products
-    //public async Task<IActionResult> Index() {
-    //    var qry = _context.Products.AsNoTracking().Include(p => p.Category).Include(p => p.Supplier);
-    //    return View(await qry.ToListAsync());
-    //}
-
-    // GET: Products
-    //public async Task<IActionResult> Index(string filter) {
-    //    var qry = _context.Products.AsNoTracking()
-    //                        .Include(p => p.Category)
-    //                        .Include(p => p.Supplier)
-    //                        .OrderBy(p => p.ProductName).AsQueryable();
-
-    //    if (!string.IsNullOrEmpty(filter)) {
-    //        qry = qry.Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
-    //    }
-
-    //    return View(await qry.ToListAsync());
-    //}
-
-    public async Task<IActionResult> Index(string filter, int page = 1, string sortExpression = "-ProductName") {
-
-        var qry = _context.Products.AsNoTracking()
-            .Include(p => p.Category)
-            .Include(p => p.Supplier)
-            .AsQueryable();
-
-        if (!string.IsNullOrWhiteSpace(filter)) {
-            qry = qry.Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
+        public ProductsController(NorthwindContext context) {
+            _context = context;
         }
 
-        var model = await PagingList.CreateAsync(qry, 10, page, sortExpression, "ProductName");
 
-        model.RouteValue = new RouteValueDictionary {
+        //// GET: Products
+        //public async Task<IActionResult> Index() {
+        //    var qry = _context.Products.AsNoTracking().Include(p => p.Category).Include(p => p.Supplier);
+        //    return View(await qry.ToListAsync());
+        //}
+
+        // GET: Products
+        //public async Task<IActionResult> Index(string filter) {
+        //    var qry = _context.Products.AsNoTracking()
+        //                        .Include(p => p.Category)
+        //                        .Include(p => p.Supplier)
+        //                        .OrderBy(p => p.ProductName).AsQueryable();
+
+        //    if (!string.IsNullOrEmpty(filter)) {
+        //        qry = qry.Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
+        //    }
+
+        //    return View(await qry.ToListAsync());
+        //}
+
+        public async Task<IActionResult> Index(string filter, int page = 1, string sortExpression = "-ProductName") {
+
+            var qry = _context.Products.AsNoTracking()
+                .Include(p => p.Category)
+                .Include(p => p.Supplier)
+                .AsQueryable();
+
+            if (!string.IsNullOrWhiteSpace(filter)) {
+                qry = qry.Where(p => EF.Functions.Like(p.ProductName, "%" + filter + "%"));
+            }
+
+            var model = await PagingList.CreateAsync(qry, 10, page, sortExpression, "ProductName");
+
+            model.RouteValue = new RouteValueDictionary {
             { "filter", filter}
         };
 
-        return View(model);
-    }
+            return View(model);
+        }
 
 
 
@@ -181,5 +179,4 @@ public class ProductsController : Controller {
         }
 
     }
-#pragma warning restore RIT0002 // Async method should be named with an Async suffix
 }

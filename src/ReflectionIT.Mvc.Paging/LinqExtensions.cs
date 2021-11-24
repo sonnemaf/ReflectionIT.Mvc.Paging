@@ -7,12 +7,8 @@ using System.Diagnostics.CodeAnalysis;
 
 namespace ReflectionIT.Mvc.Paging {
     internal static class LinqExtensions {
-        private static PropertyInfo GetPropertyInfo(Type objType, string name) {
-            var properties = objType.GetProperties();
-            var matchedProperty = properties.FirstOrDefault(p => p.Name == name);
-
-            ArgumentNullException.ThrowIfNull(matchedProperty);
-
+        private static PropertyInfo? GetPropertyInfo(Type objType, string name) {
+            var matchedProperty = objType.GetProperty(name);
             return matchedProperty;
         }
         private static LambdaExpression GetOrderExpression(Type objType, PropertyInfo pi) {
@@ -23,7 +19,13 @@ namespace ReflectionIT.Mvc.Paging {
         }
 
         public static IEnumerable<T> OrderBy<T>([NotNull] this IEnumerable<T>? query, string name) {
+#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(query);
+#else
+            if (query is null) {
+                throw new ArgumentNullException(nameof(query));
+            }
+#endif
 
             var index = 0;
             var a = name.Split(',');
@@ -31,7 +33,7 @@ namespace ReflectionIT.Mvc.Paging {
                 var m = index++ > 0 ? "ThenBy" : "OrderBy";
                 if (item.StartsWith("-")) {
                     m += "Descending";
-                    name = item.Substring(1);
+                    name = item[1..];
                 } else {
                     name = item;
                 }

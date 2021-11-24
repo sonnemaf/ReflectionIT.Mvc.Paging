@@ -12,8 +12,6 @@ namespace ReflectionIT.Mvc.Paging {
 
     public static class Extensions {
 
-#pragma warning disable IDE0022 // Use expression body for methods
-
         public static string DisplayNameFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression) where TModel : class {
             return html.DisplayNameForInnerType<TModel, TValue>(expression);
         }
@@ -29,7 +27,7 @@ namespace ReflectionIT.Mvc.Paging {
             return SortableHeaderFor(html, expression, sortColumn);
         }
 
-        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel,  PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, string sortColumn, object htmlAttributes) where TModel : class {
+        public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, string sortColumn, object htmlAttributes) where TModel : class {
             var pagingList = modelSelector(html.ViewData.Model);
             var bldr = new HtmlContentBuilder();
 
@@ -79,7 +77,6 @@ namespace ReflectionIT.Mvc.Paging {
             var member = (expression.Body as MemberExpression).Member;
             return SortableHeaderFor(html, expression, member.Name, htmlAttributes);
         }
-#pragma warning restore IDE0022 // Use expression body for methods
 
         public static IQueryable<T> OrderBy<T>(this IQueryable<T> source, string sortExpression) where T : class {
             var index = 0;
@@ -88,7 +85,7 @@ namespace ReflectionIT.Mvc.Paging {
                 var m = index++ > 0 ? "ThenBy" : "OrderBy";
                 if (item.StartsWith("-")) {
                     m += "Descending";
-                    sortExpression = item.Substring(1);
+                    sortExpression = item[1..];
                 } else {
                     sortExpression = item;
                 }
@@ -148,16 +145,13 @@ namespace ReflectionIT.Mvc.Paging {
             //});
         }
 
-#pragma warning disable IDE0060 // Remove unused parameter
         public static void AddPaging(this IServiceCollection services, Action<PagingOptions> configureOptions) {
-#pragma warning restore IDE0060 // Remove unused parameter
-                               //AddPaging(services);
             configureOptions(PagingOptions.Current);
         }
 
         public static Dictionary<string, string> GetRouteData(this IPagingList pl, int pageIndex, params string[] excludes) {
             var dict = pl.GetRouteValueForPage(pageIndex);
-            return dict.Where(kvp => kvp.Value is object && !excludes.Contains(kvp.Key)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
+            return dict.Where(kvp => kvp.Value is not null && !excludes.Contains(kvp.Key)).ToDictionary(kvp => kvp.Key, kvp => kvp.Value.ToString());
         }
 
     }

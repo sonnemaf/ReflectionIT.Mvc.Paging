@@ -10,7 +10,6 @@ using SampleApp.Models.Database;
 using SampleApp.ViewModels;
 
 namespace SampleApp.Controllers {
-#pragma warning disable RIT0002 // Async method should be named with an Async suffix
 
     public class SuppliersController : Controller {
 
@@ -134,5 +133,4 @@ namespace SampleApp.Controllers {
             return _context.Suppliers.Any(e => e.SupplierId == id);
         }
     }
-#pragma warning restore RIT0002 // Async method should be named with an Async suffix
 }
