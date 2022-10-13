@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFrameworks>net6.0;net5.0</TargetFrameworks>
+		<TargetFrameworks>net7.0;net6.0;net5.0</TargetFrameworks>
 		<Nullable>enable</Nullable>
 		<Company>Reflection IT</Company>
 		<Authors>Fons Sonnemans</Authors>
@@ -13,14 +13,14 @@
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		<Title>ReflectionIT.Mvc.Paging</Title>
-		<Description>ASP.NET Core 5 and 6.0 Library to support Paging (including sorting and filtering) for Entity Framework Core and IEnumerableOfT datasources</Description>
+		<Description>ASP.NET Core 5, 6.0, 7.0 Library to support Paging (including sorting and filtering) for Entity Framework Core and IEnumerableOfT datasources</Description>
 		<PackageLicenseUrl></PackageLicenseUrl>
 		<PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
 		<PackageTags>ASPNETCore MVC EntityFrameworkCore Paging</PackageTags>
 		<PackageReleaseNotes>
-			.NET 5 and .NET 6 release
+			.NET 7.0 support and Bootstrap 5 Pager component added
 		</PackageReleaseNotes>
-		<Version>6.0.1.0</Version>
+		<Version>7.0.0.0</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -47,6 +47,13 @@
 		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="6.*" />
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.*" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.*" />
+	</ItemGroup>
+
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-rc.2.22476.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-rc.2.22476.2" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.0-rc.2.22476.2" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.2.22472.11" />
 	</ItemGroup>
 
 	<ItemGroup>

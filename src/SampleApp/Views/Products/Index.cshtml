@@ -6,7 +6,7 @@
 
 <h1>Products</h1>
 
-<form method="get" class="form-inline">
+<form method="get">
     <input name="filter" class="form-control" value="@Model.RouteValue["Filter"]" />&nbsp;
     <button type="submit" class="btn btn-info">Search</button>
 </form>
@@ -61,3 +61,6 @@
     <vc:pager paging-list="Model" />
 </nav>
 
+@{
+    this.Html.ActionLink("abc", "ef");
+}

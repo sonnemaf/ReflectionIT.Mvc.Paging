@@ -1,0 +1,84 @@
+﻿@model ReflectionIT.Mvc.Paging.IPagingList
+
+@{
+    bool showFirstAndLast = true;
+    bool useDisabled = false;
+    bool useFontAwesome = false;
+
+    var start = this.Model.StartPageIndex;
+    var stop = this.Model.StopPageIndex;
+
+    string icon = useFontAwesome ? "<i class=\"fa fa-arrow-left\"></i>" : "&laquo;";
+    string previous = $"<span class=\"d-none d-sm-block\">{icon} Previous</span><span class=\"d-block d-sm-none\">{icon}</span>";
+    icon = useFontAwesome ? "<i class=\"fa fa-arrow-right\"></i>" : "&raquo;";
+
+    string next = $"<span class=\"d-none d-sm-block\">Next {icon}</span><span class=\"d-block d-sm-none\">{icon}</span>";
+    string first = "1";
+    string last = Model.PageCount.ToString();
+}
+
+@if (this.Model.PageCount > 1) {
+    <ul class="pagination">
+
+        @if (this.Model.PageIndex > 1) {
+            <li class="page-item">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageIndex - 1))" aria-label="Previous" class="page-link">
+                    @Html.Raw(@previous)
+                </a>
+            </li>
+        } else if (useDisabled) {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">@Html.Raw(@previous)</a>
+            </li>
+        }
+
+        @if (showFirstAndLast) {
+            @if (start > 1) {
+                <li class="page-item">
+                    <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(1))" aria-label="First" class="page-link">
+                        @Html.Raw(@first)
+                    </a>
+                </li>
+                @if (start > 2) {
+                    <li class="page-item disabled page-item-spacing mx-2">
+                        ...
+                    </li>
+                }
+            } 
+        }
+
+        @for (int i = start; i <= stop; i++) {
+            <li class="page-item @((Model.PageIndex == i) ? "active" : null)">
+                @Html.ActionLink(i.ToString(), Model.Action, Model.GetRouteValueForPage(i), new { @class = "page-link" })
+            </li>
+        }
+
+        @if (showFirstAndLast) {
+            @if (stop < this.Model.PageCount) {
+                @if (stop < this.Model.PageCount - 1) {
+                    <li class="page-item disabled page-item-spacing mx-2">
+                        ...
+                    </li>
+                }
+                <li class="page-item">
+                    <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageCount))" aria-label="Last" class="page-link">
+                        @Html.Raw(@last)
+                    </a>
+                </li>
+            } 
+        }
+
+        @if (this.Model.PageIndex < this.Model.PageCount) {
+            <li class="page-item">
+                <a href="@Url.Action(Model.Action, Model.GetRouteValueForPage(this.Model.PageIndex + 1))" aria-label="Next" class="page-link">
+                    @Html.Raw(@next)
+                </a>
+            </li>
+        } else if (useDisabled) {
+            <li class="page-item disabled">
+                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">@Html.Raw(@next)</a>
+            </li>
+        }
+
+    </ul>
+}

@@ -13,6 +13,7 @@ using System;
 
 namespace SampleApp {
     public class Startup {
+
         public Startup(IConfiguration configuration) {
             Configuration = configuration;
         }
@@ -27,15 +28,12 @@ namespace SampleApp {
 
             services.AddControllersWithViews();
 
-            // Add application services.
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
-
             // Register ViewComponent using an EmbeddedFileProvider & setting some options
             services.AddPaging(options => {
-                options.ViewName = "Bootstrap4";
+                options.ViewName = "Bootstrap5";
                 options.PageParameterName = "pageindex";
                 options.SortExpressionParameterName = "sort";
+                options.DefaultNumberOfPagesToShow = 3;
                 options.HtmlIndicatorDown = " <span>&darr;</span>";
                 options.HtmlIndicatorUp = " <span>&uarr;</span>";
             });
@@ -53,9 +51,10 @@ namespace SampleApp {
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
             app.UseRouting();
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => {
 

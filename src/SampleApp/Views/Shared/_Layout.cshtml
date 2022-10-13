@@ -1,84 +1,58 @@
 ﻿<!DOCTYPE html>
-<html>
-<head lang="en">
+<html lang="en">
+<head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>@ViewData["Title"] - Paging SampleApp</title>
-
-    <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
-    </environment>
-    <environment names="Staging,Production">
-        <link rel="stylesheet"
-              href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
-              integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
-              crossorigin="anonymous"
-              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
-              asp-fallback-test-class="sr-only"
-              asp-fallback-test-property="position"
-              asp-fallback-test-value="absolute" />
-        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
-    </environment>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebApplication60</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/WebApplication60.styles.css" asp-append-version="true" />
 </head>
 <body>
-    <div class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">Paging SampleApp</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link">Home</a></li>
-                <li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="About" class="nav-link">About</a></li>
-                <li class="nav-item"><a asp-area="" asp-controller="Home" asp-action="Contact" class="nav-link">Contact</a></li>
-                <li class="nav-item"><a asp-area="" asp-controller="Products" asp-action="Index" class="nav-link">Products</a></li>
-                <li class="nav-item"><a asp-area="" asp-controller="Suppliers" asp-action="Index" class="nav-link">Suppliers</a></li>
-                <li class="nav-item"><a asp-area="" asp-controller="Demo" asp-action="Index" class="nav-link">Demo</a></li>
-            </ul>
-        </div>
-    </div>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication60</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Products" asp-action="Index" class="nav-link">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Suppliers" asp-action="Index" class="nav-link">Suppliers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Demo" asp-action="Index" class="nav-link">Demo</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
     <div class="container">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Today.Year - Reflection IT</p>
-        </footer>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
-    <environment names="Development">
-        <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/tether/dist/js/tether.js"></script>
-        <script src="~/lib/popper.js/dist/popper.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
-    </environment>
-    <environment names="Staging,Production">
-
-        <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
-                integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
-                crossorigin="anonymous"
-                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
-                asp-fallback-test="window.jQuery">
-        </script>
-
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
-                integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
-                crossorigin="anonymous">
-        </script>
-
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-                integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
-                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
-                crossorigin="anonymous">
-        </script>
-        <script src="~/js/site.min.js" asp-append-version="true"></script>
-    </environment>
-
-
-
-    @RenderSection("scripts", required: false)
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2022 - WebApplication60 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
