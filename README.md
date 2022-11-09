@@ -16,7 +16,7 @@ Add the following code to the ConfigureServices() method of the Startup class. Y
 
 ```
 services.AddPaging(options => {
-    options.ViewName = "Bootstrap4";
+    options.ViewName = "Bootstrap5";
     options.PageParameterName = "pageindex";
 });
 ```            
