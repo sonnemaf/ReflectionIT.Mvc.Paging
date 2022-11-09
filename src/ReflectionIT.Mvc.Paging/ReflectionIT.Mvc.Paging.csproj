@@ -50,10 +50,10 @@
 	</ItemGroup>
 
 	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.0.0-rc.2.22476.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.0.0-rc.2.22476.2" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.0.0-rc.2.22476.2" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.0-rc.2.22472.11" />
+		<PackageReference Include="Microsoft.AspNetCore.Components" Version="7.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="7.*" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="7.*" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.*" />
 	</ItemGroup>
 
 	<ItemGroup>

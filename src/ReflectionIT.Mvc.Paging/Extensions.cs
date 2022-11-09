@@ -18,7 +18,7 @@ namespace ReflectionIT.Mvc.Paging {
 
         [Obsolete("remove the pagingList parameter, it is not used any more")]
         public static IHtmlContent SortableHeaderFor<TModel, TValue>(this IHtmlHelper<PagingList<TModel>> html, Expression<Func<TModel, TValue>> expression, IPagingList pagingList) where TModel : class {
-            var member = (expression.Body as MemberExpression).Member;
+            var member = ((MemberExpression)expression.Body).Member;
             return SortableHeaderFor(html, expression, member.Name, pagingList);
         }
 
@@ -40,16 +40,16 @@ namespace ReflectionIT.Mvc.Paging {
         }
 
         public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, string sortColumn) where TModel : class {
-            return SortableHeaderFor(html, modelSelector, expression, sortColumn, null);
+            return SortableHeaderFor(html: html, modelSelector: modelSelector, expression: expression, sortColumn: sortColumn, htmlAttributes: null);
         }
 
         public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression) where TModel : class {
-            var member = (expression.Body as MemberExpression).Member;
+            var member = ((MemberExpression)expression.Body).Member;
             return SortableHeaderFor(html, modelSelector, expression, member.Name);
         }
 
         public static IHtmlContent SortableHeaderFor<TViewModel, TModel, TValue>(this IHtmlHelper<TViewModel> html, Func<TViewModel, PagingList<TModel>> modelSelector, Expression<Func<TModel, TValue>> expression, object htmlAttributes) where TModel : class {
-            var member = (expression.Body as MemberExpression).Member;
+            var member = ((MemberExpression)expression.Body).Member;
             return SortableHeaderFor(html, modelSelector, expression, member.Name, htmlAttributes);
         }
 

@@ -38,9 +38,9 @@ namespace ReflectionIT.Mvc.Paging {
                     name = item;
                 }
                 name = name.Trim();
-
-                var propInfo = GetPropertyInfo(typeof(T), name);
-                var expr = GetOrderExpression(typeof(T), propInfo);
+                
+                PropertyInfo propInfo = GetPropertyInfo(typeof(T), name);
+                LambdaExpression expr = GetOrderExpression(typeof(T), propInfo);
                 var method = typeof(Enumerable).GetMethods().FirstOrDefault(mt => mt.Name == m && mt.GetParameters().Length == 2);
                 if (method is not null) {
                     var genericMethod = method.MakeGenericMethod(typeof(T), propInfo.PropertyType);
