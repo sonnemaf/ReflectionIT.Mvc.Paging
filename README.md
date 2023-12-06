@@ -1,20 +1,22 @@
 # ReflectionIT.Mvc.Paging
-ASP.NET Core 5.0 Paging (including filtering and sorting) solution using Entity Framework Core 5.0 and IEnumerable<T>
+ASP.NET Core 5.0, 6.0, 7.0 Paging (including filtering and sorting) solution using Entity Framework Core and IEnumerable<T>
 
 More info: https://reflectionit.nl/blog/2017/paging-in-asp-net-core-mvc-and-entityframework-core
 
-You can also use the NuGet package https://www.nuget.org/packages/ReflectionIT.Mvc.Paging/ 
-Use https://www.nuget.org/packages/ReflectionIT.Mvc.Paging/3.5.0 if you are still using ASP.NET Core 2.2
+# NuGet packages
 
-# Install
-`Install-Package ReflectionIT.Mvc.Paging`                 
+| Package | Version |
+| ------ | ------ |
+| ReflectionIT.Mvc.Paging | [![NuGet](https://img.shields.io/nuget/v/ReflectionIT.Mvc.Paging)](https://www.nuget.org/packages/ReflectionIT.Mvc.Paging/) |         
+
+Use https://www.nuget.org/packages/ReflectionIT.Mvc.Paging/3.5.0 if you are still using ASP.NET Core 2.2
 
 # Setup 
 Add the following code to the ConfigureServices() method of the Startup class. You can/should set the PageParameterName to 'pageindex' to solve the Page "Area" problem in ASP.NET Core 2.2 and higher. See https://github.com/sonnemaf/ReflectionIT.Mvc.Paging/issues/21
 
 ```
 services.AddPaging(options => {
-    options.ViewName = "Bootstrap4";
+    options.ViewName = "Bootstrap5";
     options.PageParameterName = "pageindex";
 });
 ```            
