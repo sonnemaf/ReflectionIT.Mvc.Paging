@@ -19,13 +19,7 @@ namespace ReflectionIT.Mvc.Paging {
         }
 
         public static IEnumerable<T> OrderBy<T>([NotNull] this IEnumerable<T>? query, string name) {
-#if NET6_0_OR_GREATER
             ArgumentNullException.ThrowIfNull(query);
-#else
-            if (query is null) {
-                throw new ArgumentNullException(nameof(query));
-            }
-#endif
 
             var index = 0;
             var a = name.Split(',');
