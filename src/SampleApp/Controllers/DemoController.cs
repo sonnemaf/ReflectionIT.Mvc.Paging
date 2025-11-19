@@ -1,33 +1,30 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ReflectionIT.Mvc.Paging;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
-namespace SampleApp.Controllers
-{
-    public class DemoController : Controller {
+namespace SampleApp.Controllers;
 
-        private static readonly List<Models.DemoViewModel> _sampleData = GetSampleData();
+public class DemoController : Controller {
 
-        private static List<Models.DemoViewModel> GetSampleData() {
-            return Enumerable.Range(1, 100).Select(n =>
-                new Models.DemoViewModel() {
-                    Name = "Item" + n,
-                    Number = n / 5
-                }).ToList();
-        }
+    private static readonly List<Models.DemoViewModel> _sampleData = GetSampleData();
 
-        public IActionResult Index(int pageindex = 1, string sort = "Name") {
+    private static List<Models.DemoViewModel> GetSampleData() {
+        return Enumerable.Range(1, 100).Select(n =>
+            new Models.DemoViewModel() {
+                Name = "Item" + n,
+                Number = n / 5
+            }).ToList();
+    }
 
-            var qry = from sd in _sampleData
-                      where sd.Number > -5
-                      select sd;
+    public IActionResult Index(int pageindex = 1, string sort = "Name") {
 
-            var model = PagingList.Create(qry, 10, pageindex, sort, "Name");
+        var qry = from sd in _sampleData
+                  where sd.Number > -5
+                  select sd;
 
-            return View(model);
-        }
+        var model = PagingList.Create(qry, 10, pageindex, sort, "Name");
+
+        return View(model);
     }
 }
