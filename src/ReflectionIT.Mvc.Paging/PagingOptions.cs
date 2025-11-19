@@ -26,8 +26,6 @@
 ///     options.PageParameterName = "pageindex";
 ///     options.SortExpressionParameterName = "sort";
 ///     options.DefaultNumberOfPagesToShow = 7;
-///     options.HtmlIndicatorDown = " <span>&darr;</span>";
-///     options.HtmlIndicatorUp = " <span>&uarr;</span>";
 ///});
 /// </code>
 /// </example>

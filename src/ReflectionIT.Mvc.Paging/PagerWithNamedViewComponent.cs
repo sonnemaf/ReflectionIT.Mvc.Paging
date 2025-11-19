@@ -7,7 +7,7 @@ namespace ReflectionIT.Mvc.Paging;
 /// </summary>
 /// <remarks>
 /// If no view name is provided when the component is invoked, the value of <see cref="PagingOptions.Current"/>.<see cref="PagingOptions.ViewName"/> is used.
-/// The <paramref name="pagingList"/> is passed to the view as the model.
+/// The <see cref="IPagingList" /> is passed to the view as the model.
 /// </remarks>
 /// <example>
 /// Usage in a Razor Page:

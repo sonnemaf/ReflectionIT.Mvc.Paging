@@ -11,7 +11,6 @@ namespace ReflectionIT.Mvc.Paging;
 /// <code>
 /// @await Component.InvokeAsync("Pager", new { pagingList = Model.Items })
 /// </code>
-/// The view that is rendered is resolved using <see cref="PagingOptions.Current.ViewName"/>.
 /// </remarks>
 [ViewComponent(Name = "Pager")]
 public class PagerViewComponent : ViewComponent {

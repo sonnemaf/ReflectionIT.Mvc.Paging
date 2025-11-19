@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using ReflectionIT.Mvc.Paging;
 using SampleApp.Models.Database;
 
-namespace SampleApp.Controllers.Areas.Test;
+namespace SampleApp.Areas.Test.Controllers;
 
 [Area("Test")]
 public class ProductsController : Controller {
