@@ -1,5 +1,5 @@
 # ReflectionIT.Mvc.Paging
-ASP.NET Core 5.0, 6.0, 7.0 Paging (including filtering and sorting) solution using Entity Framework Core and IEnumerable<T>
+ASP.NET Core 8.0, 9.0 Paging (including filtering and sorting) solution using Entity Framework Core and IEnumerable<T>
 
 More info: https://reflectionit.nl/blog/2017/paging-in-asp-net-core-mvc-and-entityframework-core
 
