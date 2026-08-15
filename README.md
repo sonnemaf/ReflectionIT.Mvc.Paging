@@ -115,3 +115,18 @@ public class DemoViewModel {
 
 }
 ```
+# Customize CSS
+For changing or adding CSS style, you need to define you customized layout on below classes:
+```
+.pagination{
+    //How CSS shows your pagination
+}
+.pagination li a{
+    //How CSS shows your pagination links
+}
+.pagination li a:hover{
+    //How CSS shows your pagination hover(when you move mouse on links)
+}
+.pagination .active a{
+    //How CSS shows your pagination active link
+}
