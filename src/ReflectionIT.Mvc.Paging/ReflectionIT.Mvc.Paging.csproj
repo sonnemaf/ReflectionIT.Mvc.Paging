@@ -1,8 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
-		<TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
-        <LangVersion>10.0</LangVersion>
+		<TargetFrameworks>net10.0;net11.0</TargetFrameworks>
         <ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<Company>Reflection IT</Company>
@@ -15,16 +14,16 @@
 		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
 		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		<Title>ReflectionIT.Mvc.Paging</Title>
-		<Description>ASP.NET Core 8.0, 9.0 Library to support Paging (including sorting and filtering) for Entity Framework Core and IEnumerableOfT datasources</Description>
+		<Description>ASP.NET Core 10.0, 11.0 Library to support Paging (including sorting and filtering) for Entity Framework Core and IEnumerableOfT datasources</Description>
 		<PackageLicenseUrl></PackageLicenseUrl>
-		<PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</RepositoryUrl>
+        <PackageProjectUrl>https://github.com/sonnemaf/ReflectionIT.Mvc.Paging</PackageProjectUrl>
 		<PackageTags>ASPNETCore MVC EntityFrameworkCore Paging</PackageTags>
 		<PackageReleaseNotes>
-			.NET 9.0 and .NET 10.0 support added and .NET 6.0 and .NET 7.0 support dropped
-            Default Options set to Bootstrap 5, was 3
-            XML Documentation added
+			.NET 11.0 support added and .NET 8.0 and .NET 9.0 support dropped
 		</PackageReleaseNotes>
-		<Version>10.0.1.0</Version>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <Version>11.0.0.0</Version>
 		<AssemblyVersion>$(Version)</AssemblyVersion>
 		<FileVersion>$(Version)</FileVersion>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
@@ -41,13 +40,6 @@
 		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
-	<ItemGroup Condition="'$(TargetFramework)' == 'net8.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Components" Version="8.*" />
-		<PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="8.*" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="8.*" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore" Version="8.*" />
-	</ItemGroup>
-
     <ItemGroup Condition="'$(TargetFramework)' == 'net10.0'">
         <PackageReference Include="Microsoft.AspNetCore.Components" Version="10.*" />
         <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="10.*" />
@@ -55,11 +47,11 @@
         <PackageReference Include="Microsoft.EntityFrameworkCore" Version="10.*" />
     </ItemGroup>
 
-    <ItemGroup Condition="'$(TargetFramework)' == 'net9.0'">
-        <PackageReference Include="Microsoft.AspNetCore.Components" Version="9.*" />
-        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.*" />
-        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="9.*" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.*" />
+    <ItemGroup Condition="'$(TargetFramework)' == 'net11.0'">
+        <PackageReference Include="Microsoft.AspNetCore.Components" Version="11.*" />
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="11.*" />
+        <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="11.*" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore" Version="11.*" />
     </ItemGroup>
 
     <ItemGroup>
@@ -67,6 +59,10 @@
 			<Pack>True</Pack>
 			<PackagePath></PackagePath>
 		</None>
+        <None Include="..\README.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
 	</ItemGroup>
 
 </Project>

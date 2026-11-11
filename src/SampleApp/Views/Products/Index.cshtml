@@ -7,8 +7,10 @@
 <h1>Products</h1>
 
 <form method="get">
-    <input name="filter" class="form-control" value="@Model.RouteValue["Filter"]" />&nbsp;
-    <button type="submit" class="btn btn-info">Search</button>
+    <div class="input-group mb-3">
+        <input name="filter" class="form-control" value="@Model.RouteValue["Filter"]" />&nbsp;
+        <button type="submit" class="btn btn-info">Search</button>
+    </div>
 </form>
 
 <p><a asp-action="Create">Create New</a></p>
@@ -26,10 +28,10 @@
             @Html.SortableHeaderFor(model => model.Supplier.CompanyName, "-Supplier.CompanyName, ProductName")
         </th>
         <th>
-            @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName, ProductName", htmlAttributes:new { Test = 1 })
+            @Html.SortableHeaderFor(model => model.Category.CategoryName, "Category.CategoryName, ProductName", htmlAttributes: new { Test = 1 })
         </th>
         <th>
-            @Html.SortableHeaderFor(model => model.UnitPrice, htmlAttributes:new { Test = 1 })
+            @Html.SortableHeaderFor(model => model.UnitPrice, htmlAttributes: new { Test = 1 })
         </th>
         <th></th>
     </tr>
